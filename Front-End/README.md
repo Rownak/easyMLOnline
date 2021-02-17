@@ -16,9 +16,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Dependencies
 
-npm install bootstrap
-npm install jquery
-npm install popper.js
+npm install bootstrap  
+npm install jquery  
+npm install popper.js  
 
 ## Further help
 
