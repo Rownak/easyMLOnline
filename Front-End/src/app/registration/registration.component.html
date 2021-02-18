@@ -1,0 +1,29 @@
+<!doctype html>
+    <body class="text-center">
+        <form [formGroup]="registerForm" class="form-signin" (ngSubmit)="onSubmit()">
+            <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"[routerLink]="'/login'">
+            <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+            <label for="inputUniversity" class="sr-only">University</label>
+            <select id= inputUniversity class="form-control" required="" formControlName="university">
+                <option>University of Arizona</option>
+                <option>SUNY Albany</option>
+            </select>
+            <label for="inputFName" class="sr-only">First Name</label>
+            <input type="text" id="inputFName" class="form-control" placeholder="First Name" required="" formControlName="FName">
+
+            <label for="inputLName" class="sr-only">Last Name</label>
+            <input type="text" id="inputLName" class="form-control" placeholder="Last Name" required="" formControlName="LName">
+
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" formControlName="email">
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" formControlName="password">
+
+            <label for="inputVPassword" class="sr-only">Verify Password</label>
+            <input type="password" id="inputVPassword" class="form-control" placeholder="Verify Password" required="" formControlName="Vpassword">
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 10px;">Register</button>
+            <p class="mt-5 mb-3 text-muted" >IDRProject</p>
+        </form>
+    </body>
