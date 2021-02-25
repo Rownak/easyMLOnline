@@ -2,6 +2,17 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+class Profile(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	UNIVERSITIES = (
+		('utep', 'The Univerisity of Texas at El Paso'),
+		('arizona', 'University of Arizona')
+	)
+
+	#ROLES = ((0, 'Professor'),(1, 'Student'),(2, 'Staff'))
+
+	university = models.CharField(max_length=50,blank=False, default='unknown',choices=UNIVERSITIES)
+
 
 class Ml_algo(models.Model):
 	title = models.CharField(max_length=32)

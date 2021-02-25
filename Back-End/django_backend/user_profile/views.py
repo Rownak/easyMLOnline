@@ -1,17 +1,25 @@
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .models import Ml_algo, Rating
-from .serializers import Ml_algoSerializer, RatingSerializer, UserSerializer
+from .models import Ml_algo, Rating, Profile
+from .serializers import Ml_algoSerializer, RatingSerializer, UserSerializer, ProfileSerializer
 from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
 
+
+class ProfileViewSet(viewsets.ModelViewSet):
+	queryset = Profile.objects.all()
+	serializer_class = ProfileSerializer
+	
+	authentication_classes = (TokenAuthentication, )
+	permission_classes = (AllowAny,)
+
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
-	
+
 	authentication_classes = (TokenAuthentication, )
 	permission_classes = (AllowAny,)
 

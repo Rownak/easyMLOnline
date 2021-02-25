@@ -1,7 +1,16 @@
 from rest_framework import serializers
-from .models import Ml_algo, Rating
+from .models import Ml_algo, Rating, Profile
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Profile
+		fields = ('id', 'user', 'university')
+		# passing more information about the password field
+		#extra_kwargs = {'password': {'write_only': True, 'required': True}}
+
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
