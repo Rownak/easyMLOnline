@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
 	path('', views.message),
-    path('kmeans', kmeans.get_kmeans),
-    path('db_scan', dbscan.get_dbscan),
-    path('agglomerative', agglomerative.get_agglomerative)
+    path('kmeans/', kmeans.get_kmeans),
+    path('db_scan/', dbscan.get_dbscan),
+    path('agglomerative/', agglomerative.get_agglomerative)
 ]
