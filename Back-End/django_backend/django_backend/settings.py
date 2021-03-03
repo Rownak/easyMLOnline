@@ -39,8 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
+    # 'allauth.socialaccount',
     'ml_models',
-    'user_profile'
+    'users',
+    'api',
+
 ]
 
 MIDDLEWARE = [
@@ -73,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -82,16 +90,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
-
-# Setting authentication using Rest Framework
-
-REST_FRAMEWORK = {
-    
-    'DEFAULT_PERMISSION_CLASSES':(
-        'rest_framework.permissions.AllowAny',
-        )
-
 }
 
 
@@ -132,3 +130,52 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'idrproject.utep@gmail.com'
+EMAIL_HOST_PASSWORD = 'idr.utep21'
+# Setting authentication using Rest Framework
+
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
+    'LOGIN_SERIALIZER': 'users.serializers.CustomLoginSerializer',
+}
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.serializers.CustomRegisterSerializer',
+}
+AUTHENTICATION_BACKENDS = [
+    # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # Needed to login by username in Django admin, regardless of allauth
+    'django.contrib.auth.backends.ModelBackend',
+]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ),
+    # 'DEFAULT_PERMISSION_CLASSES':(
+    #     'rest_framework.permissions.AllowAny',
+    #     )
+}
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
+
+SITE_ID = 2

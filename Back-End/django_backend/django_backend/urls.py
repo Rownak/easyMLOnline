@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ml_models/', include('ml_models.urls')),
     path('auth/', obtain_auth_token),
-    path('user_profile/', include('user_profile.urls')),
+    path('api/v1/', include('api.urls')),
 ]
