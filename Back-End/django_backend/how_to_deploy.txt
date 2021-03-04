@@ -39,6 +39,7 @@
 
 3. Django Project
   a. Before deployment steps
+      i. activate:- source deploy_ml/bin/activate
       i. python manage.py check --deploy :- check the status and follow the recommendations
       ii. project/settings.py 
           DEBUG = False 
