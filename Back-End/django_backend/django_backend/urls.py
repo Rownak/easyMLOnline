@@ -15,11 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ml_models/', include('ml_models.urls')),
-    path('auth/', obtain_auth_token),
-    path('api/v1/', include('api.urls')),
+    path('user/', include('api.urls')),
 ]
