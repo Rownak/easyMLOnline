@@ -1,0 +1,11 @@
+<div class="card-body">
+  <form>
+      <div class="form-group">
+          <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
+          <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+      </div>
+  </form>
+  <div class="hot">
+    <hot-table [settings]="hotSettings" [hotId]='inputID'></hot-table>
+  </div>
+</div>

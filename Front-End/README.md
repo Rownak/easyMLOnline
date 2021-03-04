@@ -18,7 +18,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 npm install bootstrap  
 npm install jquery  
-npm install popper.js  
+npm install popper.js
+npm install handsontable @handsontable/angular
+npm install ngx-csv-parser
 
 ## Further help
 
