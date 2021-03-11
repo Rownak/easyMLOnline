@@ -1,6 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
-
+from rest_framework.authtoken.models import Token
 
 class CustomUserManager(BaseUserManager):
     """
@@ -18,6 +18,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.first_name = first_name
         user.last_name = last_name
+        token = Token.objects.create(user=user)
         user.save()
         return user
 

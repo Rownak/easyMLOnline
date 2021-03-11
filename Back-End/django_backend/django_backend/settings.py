@@ -25,8 +25,8 @@ SECRET_KEY = '4eiz4k3^kffm8k%48pb&k*!y1p5kll*%mx80vyhpc@or12=@pg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.16.161.192']
-
+#ALLOWED_HOSTS = ['3.16.161.192']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -39,16 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+    'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'rest_auth.registration',
+    'dj_rest_auth.registration',
 
-    # 'allauth.socialaccount',
+    'allauth.socialaccount',
     'ml_models',
     'users',
-    'api',
 
 ]
 
@@ -140,11 +139,11 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-
+LOGIN_URL = 'http://localhost:8000/user/custom/login'
 AUTH_USER_MODEL = 'users.CustomUser'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
@@ -165,6 +164,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     # Needed to login by username in Django admin, regardless of allauth
     'django.contrib.auth.backends.ModelBackend',
+
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -172,6 +172,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES':(
         'rest_framework.permissions.AllowAny',
+
         )
 }
 

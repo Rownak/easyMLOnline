@@ -19,5 +19,5 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ml_models/', include('ml_models.urls')),
-    path('user/', include('api.urls')),
+    path('user/', include('users.urls')),
 ]

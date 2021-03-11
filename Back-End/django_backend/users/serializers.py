@@ -14,7 +14,7 @@ class CustomLoginSerializer(RestAuthLoginSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CustomUser
-        fields = ('email','first_name','last_name', 'university')
+        fields = ('id','email','first_name','last_name', 'university')
 
 class CustomRegisterSerializer(RegisterSerializer):
 	username=None
@@ -27,6 +27,5 @@ class CustomRegisterSerializer(RegisterSerializer):
 		user.university = self.data.get('university')
 		user.first_name = self.data.get('first_name')
 		user.last_name = self.data.get('last_name')
-		
 		user.save()
 		return user
