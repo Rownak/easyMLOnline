@@ -5,8 +5,8 @@ import numpy as np
 from sklearn import metrics
 from sklearn.cluster import DBSCAN
 import json
-
-
+import matplotlib.pyplot as plt
+import os
 @api_view(['GET'])
 def index_page(request):
     return_data = {
@@ -15,19 +15,31 @@ def index_page(request):
     }
     return Response(return_data)
 
-def dbscan_cluster(X, eps, min_samples):
+def dbscan_cluster(X, eps, min_samples, user_id):
     
     model = DBSCAN(eps, min_samples)
     # fit model and predict clusters
     y_db = model.fit_predict(X)
     silhouette_score=metrics.silhouette_score(X, y_db)
 
+    X = np.array(X)
+    plt.scatter(X[:, 0], X[:, 1], c=y_db, s=50, cmap='viridis')
+
+    plt_url = 'media/{}'.format(user_id)
+    if not os.path.exists(plt_url):
+        os.makedirs(plt_url)
+
+    plt_url += '/dbscan_output.png'
+    plt.savefig(plt_url)
     #pickle.dump(y_db,open("ml_model/dbscan_result.pkl", "wb"))
 
-    return y_db, silhouette_score
+    return y_db, silhouette_score, plt_url
 
 @api_view(["POST"])
 def get_dbscan(request):
+    user_id = request.user.id
+    if (user_id == None):
+        user_id = 0
     try:
 
         data = json.loads(request.body)
@@ -45,12 +57,13 @@ def get_dbscan(request):
             #print("min_samples",min_samples)
             train_data = np.array(train_data)
             #print("train_data",train_data)
-            y_db, silhouette_score = dbscan_cluster(train_data,eps, min_samples)
+            y_db, silhouette_score, plt_url = dbscan_cluster(train_data,eps, min_samples, user_id)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_db' : y_db.reshape(-1,1),
-                'silhouette_score' : silhouette_score
+                'silhouette_score' : silhouette_score,
+                'plt_url' : plt_url
             }
         else:
             result = {

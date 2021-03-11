@@ -3,15 +3,15 @@ from rest_framework import generics
 
 from . import models
 from . import serializers
-from rest_auth.registration.views import RegisterView
-from rest_auth.views import LoginView
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from dj_rest_auth.registration.views import RegisterView
+from dj_rest_auth.views import LoginView
+from rest_framework.permissions import IsAuthenticated
 
 class CustomLoginView(LoginView):
     def get_response(self):
         orginal_response = super().get_response()
-        orginal_response.data['user']['token'] = orginal_response.data['token']
-        print(orginal_response.data['user'])
+        orginal_response.data['user']['token'] = orginal_response.data['access_token']
+        print(orginal_response.data)
 
         return orginal_response
 

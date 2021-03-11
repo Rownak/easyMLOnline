@@ -4,7 +4,8 @@ import numpy as np
 from sklearn import metrics
 from sklearn.cluster import KMeans
 import json
-
+import matplotlib.pyplot as plt
+import os
 # Create your views here.
 @api_view(['GET'])
 def index_page(request):
@@ -14,17 +15,31 @@ def index_page(request):
     }
     return Response(return_data)
 
-def kmeans_cluster(X, n_clusters):
+
+def kmeans_cluster(X, n_clusters, user_id):
 
     kmeans = KMeans(n_clusters)
     kmeans.fit(X)
     y_kmeans = kmeans.predict(X)
     silhouette_score=metrics.silhouette_score(X, y_kmeans)
-    
-    return y_kmeans, kmeans.inertia_, silhouette_score
+    X = np.array(X)
+    plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')
+    centers = kmeans.cluster_centers_
+    plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
+    plt_url = 'media/{}'.format(user_id)
+    if not os.path.exists(plt_url):
+        os.makedirs(plt_url)
+    plt_url+='/kmeans_output.png'
+    plt.savefig(plt_url)
+
+    return y_kmeans, kmeans.inertia_, silhouette_score, plt_url
 
 @api_view(["POST"])
 def get_kmeans(request):
+    print(request.user.id)
+    user_id=request.user.id
+    if(user_id==None):
+        user_id=0
     try:
         # load request from json
         data = json.loads(request.body)
@@ -42,13 +57,14 @@ def get_kmeans(request):
             # Filtering the rows which contains None 
             train_data = [list(filter(None, lst)) for lst in train_data]
             #print("train_data",train_data)
-            y_kmeans, ssd_kmeans, silhouette_score = kmeans_cluster(train_data,k)
+            y_kmeans, ssd_kmeans, silhouette_score, plt_url = kmeans_cluster(train_data,k, user_id)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_kmeans' : y_kmeans.reshape(-1,1),
                 'ssd' : ssd_kmeans,
-                'silhouette_score' : silhouette_score
+                'silhouette_score' : silhouette_score,
+                'plt_url' : plt_url
             }
         else:
             result = {

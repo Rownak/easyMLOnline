@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -130,6 +130,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -139,7 +141,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-LOGIN_URL = 'http://localhost:8000/user/custom/login'
+LOGIN_URL = 'http://3.16.161.192:8000/user/custom/login'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -178,5 +180,5 @@ REST_FRAMEWORK = {
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
-
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 SITE_ID = 2
