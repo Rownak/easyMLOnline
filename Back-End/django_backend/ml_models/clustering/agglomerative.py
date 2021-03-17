@@ -5,7 +5,11 @@ from sklearn import metrics
 from sklearn.cluster import AgglomerativeClustering
 import json
 import matplotlib.pyplot as plt
-import os
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+from plotting.plot_2d import plot_2d
 def agg_cluster(X, n, user_id):
     model = AgglomerativeClustering(n)
     y_agg = model.fit_predict(X)
@@ -13,12 +17,11 @@ def agg_cluster(X, n, user_id):
     #pickle.dump(y_agg,open("ml_model/agglomerative_result.pkl", "wb"))
 
     X = np.array(X)
-    plt.scatter(X[:, 0], X[:, 1], c=y_agg, s=50, cmap='viridis')
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
     plt_url += '/agg_output.png'
-    plt.savefig(plt_url)
+    plot_2d(X, y_agg, plt_url)
 
     return y_agg, silhouette_score, plt_url
 

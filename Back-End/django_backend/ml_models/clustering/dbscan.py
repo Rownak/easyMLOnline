@@ -6,7 +6,11 @@ from sklearn import metrics
 from sklearn.cluster import DBSCAN
 import json
 import matplotlib.pyplot as plt
-import os
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+from plotting.plot_2d import plot_2d
 @api_view(['GET'])
 def index_page(request):
     return_data = {
@@ -23,15 +27,11 @@ def dbscan_cluster(X, eps, min_samples, user_id):
     silhouette_score=metrics.silhouette_score(X, y_db)
 
     X = np.array(X)
-    plt.scatter(X[:, 0], X[:, 1], c=y_db, s=50, cmap='viridis')
-
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
-
     plt_url += '/dbscan_output.png'
-    plt.savefig(plt_url)
-    #pickle.dump(y_db,open("ml_model/dbscan_result.pkl", "wb"))
+    plot_2d(X, y_db, plt_url)
 
     return y_db, silhouette_score, plt_url
 

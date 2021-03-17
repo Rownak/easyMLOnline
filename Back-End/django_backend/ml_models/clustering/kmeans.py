@@ -4,8 +4,11 @@ import numpy as np
 from sklearn import metrics
 from sklearn.cluster import KMeans
 import json
-import matplotlib.pyplot as plt
-import os
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+from plotting.plot_2d import plot_2d
 # Create your views here.
 @api_view(['GET'])
 def index_page(request):
@@ -23,15 +26,11 @@ def kmeans_cluster(X, n_clusters, user_id):
     y_kmeans = kmeans.predict(X)
     silhouette_score=metrics.silhouette_score(X, y_kmeans)
     X = np.array(X)
-    plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')
-    centers = kmeans.cluster_centers_
-    plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
-    plt_url+='/kmeans_output.png'
-    plt.savefig(plt_url)
-
+    plt_url += '/kmeans_output.png'
+    plot_2d(X, y_kmeans, plt_url)
     return y_kmeans, kmeans.inertia_, silhouette_score, plt_url
 
 @api_view(["POST"])
