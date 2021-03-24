@@ -41,10 +41,9 @@ def get_agglomerative(request):
             #Datapreprocessing Convert the values to float
             n = int(n)
             #print("n_clusters",n_clusters)
-            train_data = np.array(train_data)
-            train_data = list(filter(any,train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            #print("train_data",train_data)
+            train_data = np.asarray(train_data,dtype=np.float64)
+            print(train_data)
             y_agg, silhouette_score, plt_url = agg_cluster(train_data,n, user_id)
             result = {
                 'error' : '0',

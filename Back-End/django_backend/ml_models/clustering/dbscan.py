@@ -55,8 +55,9 @@ def get_dbscan(request):
             #print("eps",eps)
             min_samples = int(min_samples)
             #print("min_samples",min_samples)
-            train_data = np.array(train_data)
-            #print("train_data",train_data)
+            train_data = [list(filter(None, lst)) for lst in train_data]
+            train_data = np.asarray(train_data,dtype=np.float64)
+            print(train_data)
             y_db, silhouette_score, plt_url = dbscan_cluster(train_data,eps, min_samples, user_id)
             result = {
                 'error' : '0',

@@ -45,15 +45,21 @@ def get_gaussian_nb(request):
             # Datapreprocessing Convert the values to float
             label_col = int(label_col)
             # print("n_clusters",n_clusters)
-            train_data = np.array(train_data)
 
+            # train_data = list(filter(any, train_data))
+            # # Filtering the rows which contains None
+            # train_data = [list(filter(None, lst)) for lst in train_data]
 
-
+            train_data = [list(filter(None, lst)) for lst in train_data]
+            train_data = np.asarray(train_data, dtype=np.float64)
+            print(train_data)
+            X_test = np.asarray(X_test, dtype=np.float64)
             # train_data = list(filter(any, train_data))
             # train_data = [list(filter(None, lst)) for lst in train_data]
 
-            X_train = train_data[:, 0:label_col]
+
             y_train = train_data[:, label_col]
+            X_train = np.delete(train_data, label_col, 1)
             # print("train_data",train_data)
             y_pred, plt_url = gaussian_nb(X_train, y_train,X_test, user_id)
             result = {
