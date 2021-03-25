@@ -1,6 +1,11 @@
-# api/urls.py
-from django.urls import include, path
-from . import views
+from django.urls import path
+from django.conf.urls import include
+from rest_framework import routers
+from .views import StudentActivityViewSet
+
+
+router = routers.DefaultRouter()
+router.register('all_activities', StudentActivityViewSet)
 urlpatterns = [
-    path('student_activity/', views.StudentActivityViewSet.as_view())
-    ]
+    path('', include(router.urls)),
+]

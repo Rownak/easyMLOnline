@@ -8,3 +8,6 @@ class Student_activity(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     n_columns = models.IntegerField()
     n_rows = models.IntegerField()
+    def get_user_data(self):
+        ratings = CustomUser.objects.filter(movie=self)
+        user = CustomUser.objects.get(self)
