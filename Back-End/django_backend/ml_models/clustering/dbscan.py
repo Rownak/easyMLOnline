@@ -42,7 +42,7 @@ def dbscan_cluster(X, eps, min_samples, user_id):
 def get_dbscan(request):
     user_id = request.user.id
     if (user_id == None):
-        user_id = 0
+        user_id = 1
     try:
 
         data = json.loads(request.body)

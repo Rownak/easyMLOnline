@@ -33,7 +33,7 @@ def get_agglomerative(request):
     print(request.user.id)
     user_id = request.user.id
     if (user_id == None):
-        user_id = 0
+        user_id = 1
     try:
         data = json.loads(request.body)
         #print("data", data)

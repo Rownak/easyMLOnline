@@ -41,7 +41,7 @@ def get_kmeans(request):
     print(request.user.id)
     user_id=request.user.id
     if(user_id==None):
-        user_id=0
+        user_id=1
     try:
         # load request from json
         data = json.loads(request.body)
