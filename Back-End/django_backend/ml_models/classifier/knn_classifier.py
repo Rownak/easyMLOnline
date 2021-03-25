@@ -1,5 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from api.models import Student_activity
+from api.serializers import StudentActivitySerializer
+from users.models import CustomUser
 import numpy as np
 from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
@@ -64,6 +67,9 @@ def get_knn_classifier(request):
                 'y_pred': y_pred.reshape(-1, 1),
                 'plt_url': plt_url
             }
+            user = CustomUser.objects.get(id=user_id)
+            activity = Student_activity.objects.create(user=user, ml_model="knn_classifier", n_rows=X_train.shape[0], n_columns=X_train.shape[1])
+            serializer = StudentActivitySerializer(activity)
         else:
             result = {
                 'error': '1',

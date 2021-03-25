@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'dj_rest_auth.registration',
-
+    'api',
     'allauth.socialaccount',
     'ml_models',
     'users',

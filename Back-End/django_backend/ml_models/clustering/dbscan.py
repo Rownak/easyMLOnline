@@ -1,11 +1,14 @@
 #Import necessary libraries
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from api.models import Student_activity
+from api.serializers import StudentActivitySerializer
+from users.models import CustomUser
 import numpy as np
 from sklearn import metrics
 from sklearn.cluster import DBSCAN
 import json
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import os, sys
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -66,6 +69,9 @@ def get_dbscan(request):
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }
+            user = CustomUser.objects.get(id=user_id)
+            activity = Student_activity.objects.create(user=user, ml_model="db_scan", n_rows=train_data.shape[0], n_columns=train_data.shape[1])
+            serializer = StudentActivitySerializer(activity)
         else:
             result = {
                 'error' : '1',

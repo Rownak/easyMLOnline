@@ -5,6 +5,9 @@ from sklearn import metrics
 from sklearn.cluster import KMeans
 import json
 import os, sys
+from api.models import Student_activity
+from api.serializers import StudentActivitySerializer
+from users.models import CustomUser
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
@@ -65,6 +68,11 @@ def get_kmeans(request):
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }
+            user = CustomUser.objects.get(id=user_id)
+            activity = Student_activity.objects.create(user=user, ml_model="kmeans", n_rows=train_data.shape[0], n_columns=train_data.shape[1])
+            serializer = StudentActivitySerializer(activity)
+            #rsp = {'message': 'Activity Created', 'result': serializer.data}
+            #print(rsp)
         else:
             result = {
                 'error' : '1',

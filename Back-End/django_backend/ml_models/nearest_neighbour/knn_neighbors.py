@@ -6,7 +6,9 @@ from sklearn.neighbors import NearestNeighbors
 import json
 import matplotlib.pyplot as plt
 import os, sys
-
+from api.models import Student_activity
+from api.serializers import StudentActivitySerializer
+from users.models import CustomUser
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
@@ -65,6 +67,9 @@ def get_knn_neighbors(request):
                 'distances':distances,
                 'plt_url': plt_url
             }
+            user = CustomUser.objects.get(id=user_id)
+            activity = Student_activity.objects.create(user=user, ml_model="knn_neighbors", n_rows=X_train.shape[0], n_columns=X_train.shape[1])
+            serializer = StudentActivitySerializer(activity)
         else:
             result = {
                 'error': '1',
