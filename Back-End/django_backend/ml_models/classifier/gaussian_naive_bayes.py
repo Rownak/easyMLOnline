@@ -52,7 +52,7 @@ def get_gaussian_nb(request):
             # train_data = list(filter(any, train_data))
             # # Filtering the rows which contains None
             # train_data = [list(filter(None, lst)) for lst in train_data]
-
+            train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
             train_data = np.asarray(train_data, dtype=np.float64)
             print(train_data)

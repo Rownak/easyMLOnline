@@ -49,6 +49,7 @@ def get_knn_neighbors(request):
             # Datapreprocessing Convert the values to float
             n_neighbors = int(n_neighbors)
             # print("n_clusters",n_clusters)
+            train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
             X_train = np.asarray(train_data, dtype=np.float64)
             print(X_train)
