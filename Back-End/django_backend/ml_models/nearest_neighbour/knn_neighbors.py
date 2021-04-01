@@ -15,7 +15,7 @@ sys.path.append(parentdir)
 from plotting.plot_2d import plot_2d
 
 
-def knn_neighbors(X_train, X_test, n_neighbors, user_id):
+def knn_neighbors(X_train, X_test, n_neighbors, user_id, features):
     neigh = NearestNeighbors(n_neighbors)
     neigh.fit(X_train)
     distances, neighbors = neigh.kneighbors(X_test)
@@ -39,11 +39,16 @@ def get_knn_neighbors(request):
         user_id = 1
     try:
         data = json.loads(request.body)
-        print("data", data)
+        #print("data", data)
 
         train_data = data['train']
         X_test = data['test']
         n_neighbors = data['n_neighbors']
+        if ('header' in data):
+            header = data['header']
+        else:
+            header = None
+        features = None
         # train_data = request.GET.get('data')
         if n_neighbors is not None:
             # Datapreprocessing Convert the values to float
@@ -51,8 +56,12 @@ def get_knn_neighbors(request):
             # print("n_clusters",n_clusters)
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
+            if (header == None or header== '0' or header == 'false'):
+                features = None
+            else:
+                features = train_data.pop(0)
             X_train = np.asarray(train_data, dtype=np.float64)
-            print(X_train)
+            # print(X_train)
 
             # train_data = list(filter(any, train_data))
             # train_data = [list(filter(None, lst)) for lst in train_data]
@@ -60,7 +69,7 @@ def get_knn_neighbors(request):
             # print("X_train: ",X_train)
             # print("y_train: ",y_train)
             plt_url = ""
-            distances, neighbors = knn_neighbors(X_train, X_test, n_neighbors, user_id)
+            distances, neighbors = knn_neighbors(X_train, X_test, n_neighbors, user_id, features)
             result = {
                 'error': '0',
                 'message': 'Successfull',

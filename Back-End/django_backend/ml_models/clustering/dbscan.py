@@ -22,19 +22,25 @@ def index_page(request):
     }
     return Response(return_data)
 
-def dbscan_cluster(X, eps, min_samples, user_id):
-    
+def dbscan_cluster(X, eps, min_samples, user_id, features):
     model = DBSCAN(eps, min_samples)
     # fit model and predict clusters
+
     y_db = model.fit_predict(X)
     silhouette_score=metrics.silhouette_score(X, y_db)
-
+    # print("X", X)
     X = np.array(X)
     plt_url = 'media/{}'.format(user_id)
+
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
-    plt_url += '/dbscan_output.png'
-    plot_2d(X, y_db, plt_url)
+    title = "DBScan Clustering"
+    plt_url += '/{}.png'.format(title.replace(" ", "_"))
+    i=0
+    while os.path.exists(f"{plt_url}_{i}.png"):
+        i += 1
+    plt_url = '{}_{}.png'.format(plt_url,i)
+    plot_2d(X, y_db, plt_url,title, features)
 
     return y_db, silhouette_score, plt_url
 
@@ -52,6 +58,11 @@ def get_dbscan(request):
         eps = data['eps']
         min_samples = data['min_samples']
         train_data = data['train']
+        if ('header' in data):
+            header = data['header']
+        else:
+            header = None
+        features = None
         if eps is not None:
             #Datapreprocessing Convert the values to float
             eps = float(eps)
@@ -60,9 +71,14 @@ def get_dbscan(request):
             #print("min_samples",min_samples)
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
+            if (header == None or header == '0' or header == 'false'):
+                features = None
+            else:
+                features = train_data.pop(0)
             train_data = np.asarray(train_data,dtype=np.float64)
-            print(train_data)
-            y_db, silhouette_score, plt_url = dbscan_cluster(train_data,eps, min_samples, user_id)
+            # print("train",train_data)
+            y_db, silhouette_score, plt_url = dbscan_cluster(train_data,eps, min_samples, user_id, features)
+            # print("y_db", y_db)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',
@@ -70,9 +86,10 @@ def get_dbscan(request):
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }
-            user = CustomUser.objects.get(id=user_id)
-            activity = Student_activity.objects.create(user=user, ml_model="db_scan", n_rows=train_data.shape[0], n_columns=train_data.shape[1])
-            serializer = StudentActivitySerializer(activity)
+            # print("result", result)
+            # user = CustomUser.objects.get(id=user_id)
+            # activity = Student_activity.objects.create(user=user, ml_model="db_scan", n_rows=train_data.shape[0], n_columns=train_data.shape[1])
+            # serializer = StudentActivitySerializer(activity)
         else:
             result = {
                 'error' : '1',

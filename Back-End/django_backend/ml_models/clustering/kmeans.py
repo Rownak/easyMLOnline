@@ -22,7 +22,7 @@ def index_page(request):
     return Response(return_data)
 
 
-def kmeans_cluster(X, n_clusters, user_id):
+def kmeans_cluster(X, n_clusters, user_id, features):
 
     kmeans = KMeans(n_clusters)
     kmeans.fit(X)
@@ -32,8 +32,13 @@ def kmeans_cluster(X, n_clusters, user_id):
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
-    plt_url += '/kmeans_output.png'
-    plot_2d(X, y_kmeans, plt_url)
+    title = "Kmeans Clustering"
+    plt_url += '/{}.png'.format(title.replace(" ", "_"))
+    i=0
+    while os.path.exists(f"{plt_url}_{i}.png"):
+        i += 1
+    plt_url = '{}_{}.png'.format(plt_url,i)
+    plot_2d(X, y_kmeans, plt_url, title, features)
     return y_kmeans, kmeans.inertia_, silhouette_score, plt_url
 
 @api_view(["POST"])
@@ -49,6 +54,11 @@ def get_kmeans(request):
         # data contains two fileds: k: number of cluster, train: matrix(size: m*n)
         k = data['k']
         train_data = data['train']
+        if ('header' in data):
+            header = data['header']
+        else:
+            header = None
+        features = None
         #train_data = request.GET.get('data')
         if k is not None:
             # Datapreprocessing Convert the values to float
@@ -57,10 +67,15 @@ def get_kmeans(request):
             # # Filtering the rows which contains None
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            train_data = np.asarray(train_data,dtype=np.float64)
-            print(train_data)
+            if (header == None or header== '0' or header == 'false'):
+                features = None
+            else:
+                features = train_data.pop(0)
+
+            train_data = np.asarray(train_data, dtype=np.float64)
+            #print(train_data)
             #print("train_data",train_data)
-            y_kmeans, ssd_kmeans, silhouette_score, plt_url = kmeans_cluster(train_data,k, user_id)
+            y_kmeans, ssd_kmeans, silhouette_score, plt_url = kmeans_cluster(train_data, k, user_id, features)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',

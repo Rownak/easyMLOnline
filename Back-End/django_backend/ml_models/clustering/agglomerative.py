@@ -13,7 +13,7 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 from plotting.plot_2d import plot_2d
-def agg_cluster(X, n, user_id):
+def agg_cluster(X, n, user_id, features):
     model = AgglomerativeClustering(n)
     y_agg = model.fit_predict(X)
     silhouette_score=metrics.silhouette_score(X, y_agg)
@@ -23,8 +23,14 @@ def agg_cluster(X, n, user_id):
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
-    plt_url += '/agg_output.png'
-    plot_2d(X, y_agg, plt_url)
+    title = "Agglomerative Clustering"
+    plt_url += '/{}'.format(title.replace(" ", "_"))
+    i=0
+    while os.path.exists(f"{plt_url}_{i}.png"):
+        i += 1
+    plt_url = '{}_{}.png'.format(plt_url,i)
+
+    plot_2d(X, y_agg, plt_url, title, features)
 
     return y_agg, silhouette_score, plt_url
 
@@ -39,6 +45,11 @@ def get_agglomerative(request):
         #print("data", data)
         n = data['n']
         train_data = data['train']
+        if('header' in data):
+            header = data['header']
+        else:
+            header = None
+        features = None
         #train_data = request.GET.get('data')
         if n is not None:
             #Datapreprocessing Convert the values to float
@@ -46,9 +57,14 @@ def get_agglomerative(request):
             #print("n_clusters",n_clusters)
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
+            if (header == None or header== '0' or header == 'false'):
+                features = None
+            else:
+                features = train_data.pop(0)
+
             train_data = np.asarray(train_data,dtype=np.float64)
-            print(train_data)
-            y_agg, silhouette_score, plt_url = agg_cluster(train_data,n, user_id)
+            # print(train_data)
+            y_agg, silhouette_score, plt_url = agg_cluster(train_data,n, user_id, features)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',

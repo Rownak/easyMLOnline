@@ -15,7 +15,7 @@ sys.path.append(parentdir)
 from plotting.plot_2d import plot_2d
 
 
-def gaussian_nb(X_train, y_train,X_test, user_id):
+def gaussian_nb(X_train, y_train,X_test, user_id, features):
     gnb = GaussianNB()
     y_pred = gnb.fit(X_train, y_train).predict(X_test)
     # pickle.dump(y_agg,open("ml_model/agglomerative_result.pkl", "wb"))
@@ -24,8 +24,14 @@ def gaussian_nb(X_train, y_train,X_test, user_id):
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
         os.makedirs(plt_url)
-    plt_url += '/guss_nb_output.png'
-    plot_2d(X_test, y_pred, plt_url)
+    title = "Naive Bayes Classification"
+    plt_url += '/{}.png'.format(title.replace(" ", "_"))
+    i=0
+    while os.path.exists(f"{plt_url}_{i}.png"):
+        i += 1
+    plt_url = '{}_{}.png'.format(plt_url, i)
+
+    plot_2d(X_test, y_pred, plt_url, title, features)
 
     return y_pred, plt_url
 
@@ -43,6 +49,11 @@ def get_gaussian_nb(request):
         train_data = data['train']
         label_col = data['label_col']
         X_test = data['test']
+        if ('header' in data):
+            header = data['header']
+        else:
+            header = None
+        features = None
         # train_data = request.GET.get('data')
         if label_col is not None:
             # Datapreprocessing Convert the values to float
@@ -54,8 +65,12 @@ def get_gaussian_nb(request):
             # train_data = [list(filter(None, lst)) for lst in train_data]
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
+            if (header == None or header== '0' or header == 'false'):
+                features = None
+            else:
+                features = train_data.pop(0)
             train_data = np.asarray(train_data, dtype=np.float64)
-            print(train_data)
+            # print(train_data)
             X_test = np.asarray(X_test, dtype=np.float64)
             # train_data = list(filter(any, train_data))
             # train_data = [list(filter(None, lst)) for lst in train_data]
@@ -64,7 +79,7 @@ def get_gaussian_nb(request):
             y_train = train_data[:, label_col]
             X_train = np.delete(train_data, label_col, 1)
             # print("train_data",train_data)
-            y_pred, plt_url = gaussian_nb(X_train, y_train,X_test, user_id)
+            y_pred, plt_url = gaussian_nb(X_train, y_train,X_test, user_id, features)
             result = {
                 'error': '0',
                 'message': 'Successfull',
