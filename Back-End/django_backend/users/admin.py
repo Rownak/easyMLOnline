@@ -13,6 +13,6 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     # As username is not in database, so specify which field to use for ordering
     ordering = ('email',)
-    list_display = ['id','email','first_name','last_name','university']
+    list_display = ['id','email','first_name','last_name','university', 'course', 'is_teacher']
 
 admin.site.register(CustomUser, CustomUserAdmin)

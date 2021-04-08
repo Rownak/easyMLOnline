@@ -29,14 +29,18 @@ from dj_rest_auth.registration.views import RegisterView, VerifyEmailView, Confi
 from dj_rest_auth.views import LoginView, LogoutView
 from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
 from .views import CustomLoginView, CustomRegisterView
+from rest_framework import routers
+router = routers.DefaultRouter()
+router.register('teacher', views.TeacherView)
 urlpatterns = [
     path('users/', views.UserListView.as_view()),
+    path('', include(router.urls)),
     path('account-confirm-email/<str:key>/', ConfirmEmailView.as_view()),
     path('register/', RegisterView.as_view()),
     path('custom/registration/', CustomRegisterView.as_view()),
     path('dj_rest_auth/login/', LoginView.as_view()),
     path('custom/login/', CustomLoginView.as_view(), name='my_custom_login'),
-    path('dj_rest_auth/logout/', LogoutView.as_view()),
+    path('custom/logout/', LogoutView.as_view()),
     path('verify-email/',
          VerifyEmailView.as_view(), name='rest_verify_email'),
     path('account-confirm-email/',

@@ -16,9 +16,14 @@ class CustomUser(AbstractUser):
 	email = models.EmailField(_('email address'), unique=True)
 	first_name = models.CharField(blank=False, max_length=50)
 	last_name = models.CharField(blank=False, max_length=50)
+	course = models.CharField(default="None", max_length=20)
 	#university = models.CharField(blank=False, max_length=255, choices=UNIVERSITY_SELECTION)
 	university = models.CharField(blank=False, max_length=100)
+	is_student = models.BooleanField('student_status', default=True)
+	is_teacher = models.BooleanField('teacher_status', default=False)
+
 	USERNAME_FIELD = 'email'
+
 	REQUIRED_FIELDS = []
 	objects = CustomUserManager()
 	def __str__(self):
