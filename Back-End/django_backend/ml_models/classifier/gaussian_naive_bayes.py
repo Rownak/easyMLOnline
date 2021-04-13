@@ -71,6 +71,8 @@ def get_gaussian_nb(request):
                 features = train_data.pop(0)
             train_data = np.asarray(train_data, dtype=np.float64)
             # print(train_data)
+            X_test = list(filter(any, X_test))
+            X_test = [list(filter(None, lst)) for lst in X_test]
             X_test = np.asarray(X_test, dtype=np.float64)
             # train_data = list(filter(any, train_data))
             # train_data = [list(filter(None, lst)) for lst in train_data]

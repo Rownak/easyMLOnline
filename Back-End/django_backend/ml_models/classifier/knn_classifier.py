@@ -18,7 +18,7 @@ def knn_classifier(X_train, y_train,X_test,n_neighbors, user_id, features):
     neigh = KNeighborsClassifier(n_neighbors)
     y_pred = neigh.fit(X_train, y_train).predict(X_test)
     # pickle.dump(y_agg,open("ml_model/agglomerative_result.pkl", "wb"))
-
+    print("y_pred", y_pred)
     X_test = np.array(X_test)
     plt_url = 'media/{}'.format(user_id)
     if not os.path.exists(plt_url):
@@ -32,7 +32,7 @@ def knn_classifier(X_train, y_train,X_test,n_neighbors, user_id, features):
 
     plot_2d(X_test, y_pred, plt_url, title, features)
 
-
+    print("y_pred", y_pred)
     return y_pred, plt_url
 
 
@@ -60,22 +60,25 @@ def get_knn_classifier(request):
             # Datapreprocessing Convert the values to float
             label_col = int(label_col)
             n_neighbors = int(n_neighbors)
-            # print("n_clusters",n_clusters)
+            print("n_clusters",n_neighbors)
             # # Filtering the rows which contains None
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            if (header == None or header== '0' or header == 'false'):
+            if (header == None or header== '0' or header == False):
                 features = None
             else:
                 features = train_data.pop(0)
             train_data = np.asarray(train_data, dtype=np.float64)
-            # print(train_data)
+
+            X_test = list(filter(any, X_test))
+            X_test = [list(filter(None, lst)) for lst in X_test]
             X_test = np.asarray(X_test, dtype=np.float64)
 
             y_train = train_data[:, label_col]
             X_train = np.delete(train_data, label_col, 1)
-            #print("X_train: ",X_train)
-            #print("y_train: ",y_train)
+            # print("X_train: ",X_train)
+            # print("y_train: ",y_train)
+            # print("feature: ", features)
             y_pred, plt_url = knn_classifier(X_train, y_train,X_test,n_neighbors, user_id, features)
             result = {
                 'error': '0',
@@ -84,6 +87,9 @@ def get_knn_classifier(request):
                 'plt_url': plt_url
             }
             user = CustomUser.objects.get(id=user_id)
+            print(user)
+            print(X_train.shape[0])
+            print(X_train.shape[1])
             activity = Student_activity.objects.create(user=user, ml_model="knn_classifier", n_rows=X_train.shape[0], n_columns=X_train.shape[1])
             serializer = StudentActivitySerializer(activity)
         else:
