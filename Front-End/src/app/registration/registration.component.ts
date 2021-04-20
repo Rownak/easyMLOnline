@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
-import { AuthService,AlertService } from '@app/services';
+import { AuthService } from '@app/services';
 
 @Component({
   selector: 'app-registration',
@@ -11,20 +11,22 @@ import { AuthService,AlertService } from '@app/services';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-
+  @ViewChild('regModal') modal;
+  modalRef: BsModalRef;
   form: FormGroup;
   submitted = false;
   returnUrl: string;
-  error = '';
+  title: string;
+  message: string;
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthService,
-    private alertService: AlertService) {
-      // if (this.authenticationService.currentUserValue) {
-      //   this.router.navigate(['/']);
-      // }
+    private modalService: BsModalService) {
+      if (this.authenticationService.currentUserValue) {
+        this.router.navigate(['/']);
+      }
      }
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class RegistrationComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = '/login';
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   get f() { return this.form.controls; }
@@ -57,11 +63,15 @@ export class RegistrationComponent implements OnInit {
       )
     .subscribe(
          data => {
-          this.alertService.success('Registration successful', true);
+          this.title='Registration successful';
+          this.message='Registration was successful! \n A verification email has been sent to your eamil address.';
+          this.openModal(this.modal);
           this.router.navigate(['/login']);
          },
          error => {
-          this.alertService.error(error);
+          this.title='Registration error';
+          this.message='Error';
+          this.openModal(this.modal);
          });
 
   }

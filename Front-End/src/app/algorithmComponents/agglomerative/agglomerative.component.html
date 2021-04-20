@@ -1,0 +1,23 @@
+<div class="card-body">
+  <h5 class="card-title">Agglomerative</h5>
+  <form [formGroup]="form">
+      <div class="row">
+          <div class="col">
+              <label for="exampleInputEmail1">Number of Clusters</label>
+              <input type="number" min="2" class="form-control" placeholder="2" [ngClass]="{ 'is-invalid': submitted && f.clusters.errors }" formControlName="clusters"/>
+              <div *ngIf="submitted && f.clusters.errors" class="invalid-feedback">
+                <div *ngIf="f.clusters.errors.required">Please enter the number of clusters</div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <label for="exampleInputEmail1">Name of run</label>
+              <input type="text" class="form-control" placeholder="Agglomerative-1" formControlName="runName"/>
+          </div>
+      </div>
+  </form>
+  <div class="container" style="display: flex; padding: 20px 60px; justify-content: center; flex-direction: column; max-width: 400px;">
+      <button class="btn btn-primary" (click)="runAlgorithm()" type="submit">Run Algorithm</button>
+  </div>
+</div>

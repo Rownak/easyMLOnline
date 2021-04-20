@@ -1,7 +1,6 @@
 import { AuthService } from '@app/services';
 import { Injectable } from '@angular/core';
-import { Router,CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router,CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 
 @Injectable({
@@ -24,5 +23,5 @@ canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
   this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
   return false;
 }
-  
+
 }

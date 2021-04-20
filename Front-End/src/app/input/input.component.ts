@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Handsontable from 'handsontable';
 import { HotTableRegisterer } from '@handsontable/angular';
 import { NgxCsvParser,NgxCSVParserError } from 'ngx-csv-parser';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -10,10 +11,10 @@ import { NgxCsvParser,NgxCSVParserError } from 'ngx-csv-parser';
 })
 export class InputComponent implements OnInit {
 
-  private hotRegisterer = new HotTableRegisterer();
+  hotRegisterer = new HotTableRegisterer();
   hotSettings: Handsontable.GridSettings= {
-    startRows: 100,
-    startCols: 100,
+    startRows: 50,
+    startCols: 50,
     colHeaders: true,
     rowHeaders: true,
     contextMenu: true,
@@ -21,10 +22,9 @@ export class InputComponent implements OnInit {
     height: 650,
     licenseKey: 'non-commercial-and-evaluation'
   };
+  header= new FormControl(true);
 
   inputID: string = 'input-table';
-
-  inputData: any[] =[]
 
   csvRecords: any[] = [];
 

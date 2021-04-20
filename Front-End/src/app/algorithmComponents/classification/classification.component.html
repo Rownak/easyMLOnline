@@ -1,0 +1,29 @@
+<div class="card-body">
+  <h5 class="card-title">{{title}}</h5>
+  <form [formGroup]="form">
+      <div class="row">
+          <div class="col">
+              <label for="labelsCol">Labels Column</label>
+              <input type="number" min="-1" class="form-control" placeholder="0" [ngClass]="{ 'is-invalid': submitted && f.labelsCol.errors }" formControlName="labelsCol"/>
+              <div *ngIf="submitted && f.labelsCol.errors" class="invalid-feedback">
+                <div *ngIf="f.labelsCol.errors.required">Please enter the number of the column that contains the labels for the data (value of -1 for last column)</div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <label for="exampleInputEmail1">Name of run</label>
+              <input type="text" class="form-control" placeholder="{{title}}-1" formControlName="runName"/>
+          </div>
+      </div>
+  </form>
+  <div><label>Test Data</label></div>
+  <div class="hot">
+    <hot-table [settings]="hotSettings" [hotId]='tableID'></hot-table>
+  </div>
+  <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
+          <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+  <div class="container" style="display: flex; padding: 20px 60px; justify-content: center; flex-direction: column; max-width: 400px;">
+      <button class="btn btn-primary" (click)="runAlgorithm()" type="submit">Run Algorithm</button>
+  </div>
+</div>

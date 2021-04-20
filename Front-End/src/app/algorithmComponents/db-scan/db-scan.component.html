@@ -1,0 +1,30 @@
+<div class="card-body">
+  <h5 class="card-title">DBSCAN</h5>
+  <form [formGroup]="form">
+      <div class="row">
+          <div class="col">
+              <label for="InputSamples">Number of Samples</label>
+              <input type="number" min="2" class="form-control" placeholder="2" [ngClass]="{ 'is-invalid': submitted && f.samples.errors }" formControlName="samples"/>
+              <div *ngIf="submitted && f.samples.errors" class="invalid-feedback">
+                <div *ngIf="f.samples.errors.required">Please enter the number of samples</div>
+              </div>
+          </div>
+          <div class="col">
+              <label for="InputEPS">EPS</label>
+              <input type="number" min="0" step="0.5" class="form-control" placeholder="1" [ngClass]="{ 'is-invalid': submitted && f.eps.errors }" formControlName="eps"/>
+              <div *ngIf="submitted && f.eps.errors" class="invalid-feedback">
+                <div *ngIf="f.eps.errors.required">Please enter the eps</div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <label for="InputNameofRun">Name of run</label>
+              <input type="text" class="form-control" placeholder="DBSCAN-1" formControlName="runName"/>
+          </div>
+      </div>
+  </form>
+  <div class="container" style="display: flex; padding: 20px 60px; justify-content: center; flex-direction: column; max-width: 400px;">
+      <button class="btn btn-primary" (click)="runAlgorithm()" type="submit">Run Algorithm</button>
+  </div>
+</div>

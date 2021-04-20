@@ -3,6 +3,12 @@
       <div class="form-group">
           <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
           <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+          <div class="form-check" style="float: right;">
+            <input class="form-check-input" type="checkbox" id="defaultCheck1" [formControl]="header"/>
+            <label class="form-check-label" for="defaultCheck1">
+                Dataset has header
+          </label>
+          </div>
       </div>
   </form>
   <div class="hot">

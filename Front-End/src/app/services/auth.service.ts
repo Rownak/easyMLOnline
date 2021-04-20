@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-      return this.http.post<any>(`${environment.apiUrl}/api/user/rest-auth/login/`, { email, password })
+      return this.http.post<any>(`${environment.apiUrl}/api/user/custom/login/`, { email, password })
           .pipe(map(user => {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
@@ -40,7 +40,7 @@ export class AuthService {
 
   register( university : string,first_name : string,last_name:
     string,email : string,password1: string,password2:string){
-    return this.http.post<any>(`${environment.apiUrl}/api/user/rest-auth/registration/`,
+    return this.http.post<any>(`${environment.apiUrl}/api/user/custom/registration/`,
     {university,first_name,last_name,email,password1,password2 });
   }
 }

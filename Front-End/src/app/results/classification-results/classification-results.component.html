@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-5"  style="max-height: 700px; min-height: 300px;">
+          <h4>Predicted labels</h4>
+          <div class="hot">
+            <hot-table [settings]="hotSettings" [hotId]='resultID' [data]="tableData"></hot-table>
+          </div>
+      </div>
+      <div class="col-md-7">
+          <h4>Results Graph</h4>
+          <img src="{{plotLink}}">
+      </div>
+  </div>
+</div>
