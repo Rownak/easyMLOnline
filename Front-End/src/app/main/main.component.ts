@@ -1,6 +1,5 @@
-import { AgglomerativeResultsComponent } from './../results/agglomerative-results/agglomerative-results.component';
 import { InputComponent } from './../input/input.component';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Tab } from '@app/models'
 import { AlgorithmsService } from '@app/services';
 import { first } from 'rxjs/operators';
@@ -16,8 +15,6 @@ export class MainComponent implements OnInit {
 
   @ViewChild(InputComponent)
   private inputComponent: InputComponent;
-  @ViewChild(AgglomerativeResultsComponent)
-  private aggResComponent: AgglomerativeResultsComponent;
   selectedAlgorithm: string;
   tabs: Tab[];
   private tabCounter: number;
@@ -32,11 +29,6 @@ export class MainComponent implements OnInit {
 
   setAlgorithm(value:string){
     this.selectedAlgorithm=value;
-  }
-
-
-  refreshTable(){
-    this.aggResComponent.refresh();
   }
 
   runAlgorithm(values){

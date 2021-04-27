@@ -102,7 +102,7 @@
                 <tab *ngFor="let tabz of tabs"
                      [heading]="tabz.id"
                      [active]="tabz.active"
-                     (selectTab)="tabz.active = true; refreshTable()"
+                     (selectTab)="tabz.active = true"
                      (deselect)="tabz.active = false"
                      [disabled]="tabz.disabled"
                      [removable]="true"
