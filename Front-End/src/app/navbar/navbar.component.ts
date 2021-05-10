@@ -22,5 +22,8 @@ export class NavbarComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
+  teacherView(){
+    this.router.navigate(['/teacher_view']);
+  }
 
 }

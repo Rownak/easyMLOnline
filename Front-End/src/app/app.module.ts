@@ -26,6 +26,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClassificationComponent } from './algorithmComponents/classification/classification.component';
 import { ClassificationResultsComponent } from './results/classification-results/classification-results.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { TeacherViewComponent } from './teacher-view/teacher-view.component';
+import { AllStudentsActivityComponent } from './teacher-view/all-students-activity/all-students-activity.component';
+import { DataTablesModule } from 'angular-datatables';
+import { ActivityByCourseComponent } from './teacher-view/activity-by-course/activity-by-course.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+// npm install jquery --save
+// npm install datatables.net --save
+// npm install datatables.net-dt --save
+// npm install angular-datatables --save
+// npm install @types/jquery --save-dev
+// npm install @types/datatables.net --save-dev
+
 
 @NgModule({
   declarations: [
@@ -42,7 +54,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     DbscanResultsComponent,
     AgglomerativeResultsComponent,
     ClassificationComponent,
-    ClassificationResultsComponent
+    ClassificationResultsComponent,
+    TeacherViewComponent,
+    AllStudentsActivityComponent,
+    ActivityByCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +72,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     HttpClientModule,
     ReactiveFormsModule,
     NgxCsvParserModule,
+    DataTablesModule,
+    NgSelectModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

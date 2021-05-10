@@ -1,0 +1,36 @@
+<div class="course-view">
+<h2>Activities by Course</h2>
+<label for="course"> Course select: </label><br>
+    <select class='select-option' [(ngModel)]="courseSelect"
+        (change)='onOptionsSelected($event)'>
+      <option class='option' 
+      *ngFor='let option of courses' 
+      [value]="option.name">{{option.name}}</option>
+    </select>
+  </div>
+<div class="table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>ML Model</th>
+        <th>Size of Data</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stdActivity of seletedCourseActivity">
+        <td>{{ stdActivity.id }}</td>
+        <td>{{ stdActivity.user_first_name }} {{ stdActivity.user_last_name }}</td>
+        <td>{{ stdActivity.user_email }}</td>
+        <td>{{ stdActivity.user_course }}</td>
+        <td>{{ stdActivity.ml_model }}</td>
+        <td>[{{ stdActivity.n_columns }}, {{ stdActivity.n_rows }}]</td>
+        <td>{{ stdActivity.date_time }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

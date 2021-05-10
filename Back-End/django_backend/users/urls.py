@@ -34,6 +34,7 @@ router = routers.DefaultRouter()
 router.register('teacher', views.TeacherView)
 urlpatterns = [
     path('users/', views.UserListView.as_view()),
+    path('courses/', views.CourseListView.as_view()),
     path('', include(router.urls)),
     path('account-confirm-email/<str:key>/', ConfirmEmailView.as_view()),
     path('register/', RegisterView.as_view()),

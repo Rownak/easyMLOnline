@@ -32,13 +32,21 @@ class CustomRegisterView(RegisterView):
         orginal_response.data.update(custom_data)
         return orginal_response
 
-class UserListView(generics.ListAPIView):
+class CourseListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
+    queryset = models.Course.objects.all()
+    serializer_class = serializers.CourseSerializer
+    permission_classes = (AllowAny,)
+
+class UserListView(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
     #\authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
+# class CourseViewSet(viewsets.ModelViewSet):
+#     queryset = models.Course.objects.all()
+#     serializer_class = serializers.CourseSerializer
 
 class TeacherView(viewsets.ModelViewSet):
     queryset = models.CustomUser.objects.all()

@@ -37,6 +37,7 @@ export class RegistrationComponent implements OnInit {
       email : ['', Validators.required],
       password: ['', Validators.required],
       Vpassword: ['', Validators.required],
+      course: ['', Validators.required],
     });
 
     // get return url from route parameters or default to '/'
@@ -59,7 +60,8 @@ export class RegistrationComponent implements OnInit {
 
     this.authenticationService.register(
       this.f.university.value, this.f.FName.value,this.f.LName.value,
-      this.f.email.value,this.f.password.value,this.f.Vpassword.value
+      this.f.email.value,this.f.password.value,this.f.Vpassword.value, 
+      this.f.course.value
       )
     .subscribe(
          data => {

@@ -1,0 +1,12 @@
+    <p>Teacher's View'!</p>
+    <button (click)="allStudentActivities()">All Student Activities </button>
+    <button (click)="activityByCourse()">Activities by course </button>
+    <div>
+        <app-all-students-activity *ngIf="allActivitySelected"
+        [studentActivities]="studentActivities">
+        </app-all-students-activity>
+        <app-activity-by-course *ngIf="activityByCourseSelected"
+        [studentActivities]="studentActivities">
+
+        </app-activity-by-course>
+    </div>

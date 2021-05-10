@@ -39,8 +39,8 @@ export class AuthService {
   }
 
   register( university : string,first_name : string,last_name:
-    string,email : string,password1: string,password2:string){
+    string,email : string,password1: string,password2:string, course:string){
     return this.http.post<any>(`${environment.apiUrl}/api/user/custom/registration/`,
-    {university,first_name,last_name,email,password1,password2 });
+    {university,first_name,last_name,email,password1,password2, course });
   }
 }

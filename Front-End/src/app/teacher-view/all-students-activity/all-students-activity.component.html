@@ -1,0 +1,27 @@
+<div class="table">
+<h2>All Student Activities</h2>
+<table datatable [dtOptions]="this.dtOptions" class="row-border hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Course</th>
+      <th>ML Model</th>
+      <th>Size of Data</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stdActivity of studentActivities">
+      <td>{{ stdActivity.id }}</td>
+      <td>{{ stdActivity.user_first_name }} {{ stdActivity.user_last_name }}</td>
+      <td>{{ stdActivity.user_email }}</td>
+      <td>{{ stdActivity.user_course }}</td>
+      <td>{{ stdActivity.ml_model }}</td>
+      <td>[{{ stdActivity.n_columns }}, {{ stdActivity.n_rows }}]</td>
+      <td>{{ stdActivity.date_time }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

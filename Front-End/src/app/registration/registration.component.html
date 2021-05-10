@@ -19,6 +19,11 @@
                 <option>University of Arizona</option>
                 <option>SUNY Albany</option>
             </select>
+            <label for="inputCourse" class="sr-only">Course</label>
+            <select id= inputCourse class="form-control" required="" formControlName="course" [ngClass]="{ 'is-invalid': submitted && f.course.errors }">
+                <option>CEHC-200</option>
+                <option>HSD-500</option>
+            </select>
             <div *ngIf="submitted && f.university.errors" class="invalid-feedback">
               <div *ngIf="f.university.errors.required">University is required</div>
             </div>
