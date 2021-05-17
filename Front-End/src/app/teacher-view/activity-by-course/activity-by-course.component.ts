@@ -12,7 +12,7 @@ export class ActivityByCourseComponent implements AfterViewInit, OnDestroy, OnIn
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
 
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
 
   @Input() studentActivities = [];
@@ -26,7 +26,11 @@ export class ActivityByCourseComponent implements AfterViewInit, OnDestroy, OnIn
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      processing: true
+      processing: true,
+      dom: 'Bfrtip',
+      buttons: [
+          'copy', 'csv', 'excel', 'print'
+      ]
     };
     console.log("student activities", this.studentActivities);
   }

@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AllStudentsActivityComponent implements OnInit {
   @Input() studentActivities = [];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   constructor(
   ) { }
 
@@ -16,7 +16,11 @@ export class AllStudentsActivityComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      processing: true
+      processing: true,
+      dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'print'
+        ]
     };
     console.log(this.studentActivities);
   }
