@@ -2,41 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c91b2e92-6c27-470d-b9aa-07e5f3e7e801" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/django_backend/templates/account/email/base_message.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_backend/templates/account/email/email_confirmation_message.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_backend/users/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/django_backend/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_backend/django_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_backend/django_backend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_backend/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_backend/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_backend/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_backend/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es2015.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/main-es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/polyfills-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/polyfills-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/polyfills-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/polyfills-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/scripts.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/scripts.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es2015.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/styles-es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es2015.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/dist/Front-End/vendor-es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/node_modules/.cache/angular-build-dl/index-v5/37/c1/61b2e4590ae27e41c400911fdef3cb4dfc9cf428e226654884f61320875f" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/node_modules/.cache/angular-build-dl/index-v5/37/c1/61b2e4590ae27e41c400911fdef3cb4dfc9cf428e226654884f61320875f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/node_modules/.cache/angular-build-dl/index-v5/cc/e2/6558e1c7cd800ae398bb52318690ac8e0d233e6e248289affd127b13f1e6" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/node_modules/.cache/angular-build-dl/index-v5/cc/e2/6558e1c7cd800ae398bb52318690ac8e0d233e6e248289affd127b13f1e6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/node_modules/__ngcc_entry_points__.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/node_modules/__ngcc_entry_points__.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/node_modules/jszip/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/node_modules/jszip/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/services/students-activity.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/services/students-activity.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/teacher-view/activity-by-course/activity-by-course.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/teacher-view/activity-by-course/activity-by-course.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/teacher-view/all-students-activity/all-students-activity.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/teacher-view/all-students-activity/all-students-activity.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/teacher-view/all-students-activity/all-students-activity.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/teacher-view/all-students-activity/all-students-activity.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
