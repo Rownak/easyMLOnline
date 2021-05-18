@@ -60,7 +60,7 @@ export class RegistrationComponent implements OnInit {
 
     this.authenticationService.register(
       this.f.university.value, this.f.FName.value,this.f.LName.value,
-      this.f.email.value,this.f.password.value,this.f.Vpassword.value, 
+      this.f.email.value,this.f.password.value,this.f.Vpassword.value,
       this.f.course.value
       )
     .subscribe(
@@ -71,8 +71,11 @@ export class RegistrationComponent implements OnInit {
           this.router.navigate(['/login']);
          },
          error => {
+          this.message=error.message;
           this.title='Registration error';
-          this.message='Error';
+          // for(let key in error){
+          //   this.message+=error[key]+"\n";
+          // }
           this.openModal(this.modal);
          });
 

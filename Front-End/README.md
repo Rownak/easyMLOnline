@@ -21,6 +21,7 @@ npm install jquery
 npm install popper.js
 npm install handsontable @handsontable/angular
 npm install ngx-csv-parser
+npm install ngx-bootstrap --save
 
 ## Further help
 
