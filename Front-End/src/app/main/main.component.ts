@@ -42,7 +42,10 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);this.spinner.hide();
+            console.log(error.error.message);
+            this.spinner.hide();
+            alert("An error occurred while calculating the results.\n Please check your data and try again.")
+
         });
 
         break;
@@ -53,7 +56,10 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);this.spinner.hide();
+          console.log(error.error.message);
+          this.spinner.hide();
+          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+
         });
         break;
       }
@@ -63,7 +69,10 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);this.spinner.hide();
+          console.log(error.error.message);
+          this.spinner.hide();
+          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+
         });
         break;
       }
@@ -73,7 +82,10 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);this.spinner.hide();
+          console.log(error.error.message);
+          this.spinner.hide();
+          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+
         });
         break;
       }
@@ -83,7 +95,10 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);this.spinner.hide();
+          console.log(error.error.message);
+          this.spinner.hide();
+          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+
         });
         break;
       }
@@ -93,7 +108,10 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);this.spinner.hide();
+          console.log(error.error.message);
+          this.spinner.hide();
+          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+
         });
         break;
       }

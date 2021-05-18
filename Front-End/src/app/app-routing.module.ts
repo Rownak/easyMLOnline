@@ -10,7 +10,7 @@ import { TeacherViewComponent} from './teacher-view/teacher-view.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
-  {path: 'teacher_view', component: TeacherViewComponent},
+  {path: 'teacher_view', component: TeacherViewComponent,canActivate: [AuthGuard], data: {teacher:true}},
   {path: '', component: MainComponent, canActivate: [AuthGuard]}
 
 ];
