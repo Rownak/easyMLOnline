@@ -1,9 +1,9 @@
 export class User {
-    id?: number;
+    id: number;
     email: string;
-    password: string;
-    first_name?: string;
-    last_name?: string;
-    university?: string;
-    token?: string;
+    first_name: string;
+    last_name: string;
+    university: string;
+    is_teacher: boolean;
+    token: string;
 }

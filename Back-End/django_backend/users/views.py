@@ -20,16 +20,20 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .utils import Util
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
+from allauth.account.admin import EmailAddress
 
 
 class CustomLoginView(LoginView):
     def get_response(self):
-        orginal_response = super().get_response()
-        orginal_response.data['user']['token'] = orginal_response.data['access_token']
-        print(orginal_response.data)
+        if(EmailAddress.objects.filter(user=self.request.user, verified=True).exists()):
+            orginal_response = super().get_response()
+            orginal_response.data['user']['token'] = orginal_response.data['access_token']
+            print(orginal_response.data)
 
-        return orginal_response
-
+            return orginal_response
+        else:
+            response = {'verification': False, 'message': 'Please verify your email first to login !!!'}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 class CustomRegisterView(RegisterView):
     serializer_class = serializers.CustomRegisterSerializer
     def create(self, request, *args, **kwargs):
