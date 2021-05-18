@@ -6,7 +6,6 @@ from rest_auth.registration.serializers import RegisterSerializer
 
 from rest_auth.serializers import LoginSerializer as RestAuthLoginSerializer
 
-
 class CustomLoginSerializer(RestAuthLoginSerializer):
     username = None
 
