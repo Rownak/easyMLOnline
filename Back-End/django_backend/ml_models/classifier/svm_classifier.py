@@ -25,13 +25,12 @@ def svm_classifier(X_train, y_train,X_test, user_id, features):
         os.makedirs(plt_url)
     title = "SVM Classification"
     plt_url += '/{}.png'.format(title.replace(" ", "_"))
-    plot_2d(X_test, y_pred, plt_url, title, features)
-
     i=0
     while os.path.exists(f"{plt_url}_{i}.png"):
         i += 1
-    plt_url = '{}_{}.png'.format(plt_url,i)
+    plt_url = '{}_{}.png'.format(plt_url, i)
 
+    plot_2d(X_test, y_pred, plt_url, title, features)
     return y_pred, plt_url
 
 
