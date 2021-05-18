@@ -30,7 +30,7 @@ def plot_2d(X, label, plt_url,title="Output", features=None):
     u_labels = np.unique(label)
     # plotting the results:
     for i in u_labels:
-        plt.scatter(X[label == i, 0], X[label == i, 1], label="class {}".format(i))
+        plt.scatter(X[label == i, 0], X[label == i, 1], label="class {}".format(int(i)))
     plt.xlabel(features[0])
     plt.ylabel(features[1])
     plt.title(title)
