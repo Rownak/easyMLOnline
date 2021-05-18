@@ -155,6 +155,10 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'idrproject.utep@gmail.com'
 EMAIL_HOST_PASSWORD = 'idr.utep21'
+
+ACCOUNT_ADAPTER = 'django_backend.adapter.DefaultAccountAdapterCustom'
+URL_FRONT = 'http://3.16.161.192/'
+
 # Setting authentication using Rest Framework
 
 
