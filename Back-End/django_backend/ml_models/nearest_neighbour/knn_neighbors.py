@@ -57,7 +57,7 @@ def get_knn_neighbors(request):
             # print("n_clusters",n_clusters)
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            if (header == None or header== '0' or header == 'false'):
+            if (not header):
                 features = None
             else:
                 features = train_data.pop(0)

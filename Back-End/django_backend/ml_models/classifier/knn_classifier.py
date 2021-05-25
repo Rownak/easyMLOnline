@@ -65,7 +65,7 @@ def get_knn_classifier(request):
             # # Filtering the rows which contains None
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            if (header == None or header== '0' or header == False):
+            if (not header):
                 features = None
             else:
                 features = train_data.pop(0)

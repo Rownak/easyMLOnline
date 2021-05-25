@@ -2,7 +2,7 @@ node_modules
 <<<<<<< HEAD
 
 =======
-Back-End/django_backend/db.sqlite3
+Back-End/django_backend/*.sqlite3
 Back-End/django_backend/media/
 *.pdf
 >>>>>>> 26c84f928aede54088c1dd2f5bce22cb3152c78b
