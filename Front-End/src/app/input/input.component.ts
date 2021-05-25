@@ -15,8 +15,13 @@ export class InputComponent implements OnInit {
   hotSettings: Handsontable.GridSettings= {
     startRows: 50,
     startCols: 50,
-    colHeaders: true,
-    rowHeaders: true,
+    colHeaders: function(index) {
+      return 'Feature '+ index;
+    },
+    rowHeaders: function(index) {
+      return 'Entry '+ index;
+    },
+    rowHeaderWidth: 75,
     contextMenu: true,
     width: '100%',
     height: 650,
