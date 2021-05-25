@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AuthService } from '@app/services';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-login',
@@ -11,16 +12,19 @@ import { AuthService } from '@app/services';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  @ViewChild('regModal') modal;
+  modalRef: BsModalRef;
   form: FormGroup;
   submitted = false;
   returnUrl: string;
-  error = '';
+  title: string;
+  message: string;
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthService) {
+    private authenticationService: AuthService,
+    private modalService: BsModalService) {
       if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
       }
@@ -35,6 +39,10 @@ export class LoginComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   get f() { return this.form.controls; }
@@ -53,8 +61,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate([this.returnUrl]);
         },
         error => {
-            this.error = error.error.message;
-            alert("Wrong Email or Password");
+          this.message='';
+          this.title='Login error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
+          this.openModal(this.modal);
         });
   }
 

@@ -71,11 +71,12 @@ export class RegistrationComponent implements OnInit {
           this.router.navigate(['/login']);
          },
          error => {
-          this.message=error.message;
+          this.message='';
           this.title='Registration error';
-          // for(let key in error){
-          //   this.message+=error[key]+"\n";
-          // }
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
           this.openModal(this.modal);
          });
 
