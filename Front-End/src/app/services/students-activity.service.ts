@@ -12,7 +12,7 @@ export class StudentsActivityService {
     private httpClient: HttpClient
   ) { }
   getAllStudentActivity(){
-    this.activities = this.httpClient.get(`${environment.apiUrl}/api/activity/all_activities/`);
+    this.activities = this.httpClient.get(`${environment.localhostUrl}/activity/all_activities/`);
     console.log(this.activities);
     return this.activities;
   }

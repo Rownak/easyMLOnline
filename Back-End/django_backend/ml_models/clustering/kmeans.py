@@ -8,6 +8,7 @@ import os, sys
 from api.models import Student_activity
 from api.serializers import StudentActivitySerializer
 from users.models import CustomUser
+from rest_framework import status
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
@@ -67,7 +68,7 @@ def get_kmeans(request):
             # # Filtering the rows which contains None
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            if (header == None or header== '0' or header == 'false'):
+            if (not header):
                 features = None
             else:
                 features = train_data.pop(0)
@@ -90,14 +91,17 @@ def get_kmeans(request):
             #rsp = {'message': 'Activity Created', 'result': serializer.data}
             #print(rsp)
         else:
-            result = {
-                'error' : '1',
-                'message': 'Invalid Parameters'                
-            }
+            response = {'error': '1', 'message': ['The value of K is missing']}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
-        result = {
+        response = {
             'error' : '2',
-            "message": str(e)
+            "message": [str(e)]
         }
-    
+        if (str(e) == "could not convert string to float: '?'"):
+            response = {
+                'error': '2',
+                "message": ["The data should contain only decimal values. Check if any datapoint is missing in the table or the attached file"]
+            }
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
     return Response(result)

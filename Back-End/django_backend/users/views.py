@@ -32,7 +32,7 @@ class CustomLoginView(LoginView):
 
             return orginal_response
         else:
-            response = {'verification': False, 'message': 'Please verify your email first to login !!!'}
+            response = {'verification': False, 'message': ['Please verify your email first to login !!!']}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 class CustomRegisterView(RegisterView):
     serializer_class = serializers.CustomRegisterSerializer
