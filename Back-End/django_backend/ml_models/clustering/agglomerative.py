@@ -90,7 +90,7 @@ def get_agglomerative(request):
         if (str(e) == "could not convert string to float: '?'"):
             response = {
                 'error': '2',
-                "message": ["The data should contain only decimal values. Check if any datapoint is missing in the table or the attached file"]
+                "message": ["The data should only contain decimal values. Check if any datapoint is string or missing in the table."]
             }
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
     

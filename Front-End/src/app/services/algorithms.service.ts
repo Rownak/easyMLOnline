@@ -11,7 +11,7 @@ export class AlgorithmsService {
   constructor(private http: HttpClient) { }
 
   kmeans(k:number, train: any[][], header:boolean) {
-    return this.http.post<any>(`${environment.localhostUrl}/ml_models/kmeans/`, { k, train, header})
+    return this.http.post<any>(`${environment.apiUrl}/api/ml_models/kmeans/`, { k, train, header})
         .pipe(map(result => {
             //
             return result;
@@ -19,7 +19,7 @@ export class AlgorithmsService {
   }
 
   dbscan(eps:number, min_samples:number, train: any[][], header:boolean) {
-    return this.http.post<any>(`${environment.localhostUrl}/ml_models/db_scan/`, { eps, min_samples, train, header })
+    return this.http.post<any>(`${environment.apiUrl}/api/ml_models/db_scan/`, { eps, min_samples, train, header })
         .pipe(map(result => {
             //
             return result;
@@ -27,7 +27,7 @@ export class AlgorithmsService {
   }
 
   agglomerative(n:number, train: any[][], header:boolean) {
-    return this.http.post<any>(`${environment.localhostUrl}/ml_models/agglomerative/`, { n, train, header })
+    return this.http.post<any>(`${environment.apiUrl}/api/ml_models/agglomerative/`, { n, train, header })
         .pipe(map(result => {
             //
             return result;
@@ -35,7 +35,7 @@ export class AlgorithmsService {
   }
 
   knn(label_col:number, n_neighbors:number, train:any[][], test:any[][], header:boolean){
-    return this.http.post<any>(`${environment.localhostUrl}/ml_models/knn_classifier/`, { label_col, n_neighbors, train, test, header })
+    return this.http.post<any>(`${environment.apiUrl}/api/ml_models/knn_classifier/`, { label_col, n_neighbors, train, test, header })
         .pipe(map(result => {
             //
             return result;
@@ -49,7 +49,7 @@ export class AlgorithmsService {
         }));
   }
   svm(label_col:number, train:any[][], test:any[][], header:boolean){
-    return this.http.post<any>(`${environment.localhostUrl}/ml_models/svm_classifier/`, { label_col, train, test, header })
+    return this.http.post<any>(`${environment.apiUrl}/api/ml_models/svm_classifier/`, { label_col, train, test, header })
         .pipe(map(result => {
             //
             return result;

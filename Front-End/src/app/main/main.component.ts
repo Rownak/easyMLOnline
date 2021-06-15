@@ -4,7 +4,7 @@ import { Tab } from '@app/models'
 import { AlgorithmsService } from '@app/services';
 import { first } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
-
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-main',
@@ -14,10 +14,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class MainComponent implements OnInit {
 
   @ViewChild(InputComponent)
+
   private inputComponent: InputComponent;
   selectedAlgorithm: string;
   tabs: Tab[];
   private tabCounter: number;
+  title: string;
+  message: string;
 
   constructor(private algorithmsService: AlgorithmsService, private spinner: NgxSpinnerService) { }
 
@@ -44,8 +47,14 @@ export class MainComponent implements OnInit {
         error => {
             console.log(error.error.message);
             this.spinner.hide();
-            alert("An error occurred while calculating the results.\n Please check your data and try again.")
-
+            // alert("An error occurred while calculating the results.\n Please check your data and try again.")
+            this.message='';
+            this.title='Value error';
+            for(let key in error.error){
+              for(let message in error.error[key])
+              this.message+=error.error[key][message]+"\n";
+            }       
+            alert(this.message) 
         });
 
         break;
@@ -58,8 +67,14 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
-
+          // alert("An error occurred while calculating the results.\n Please check your data and try again.")
+            this.message='';
+            this.title='Value error';
+            for(let key in error.error){
+              for(let message in error.error[key])
+              this.message+=error.error[key][message]+"\n";
+            }       
+            alert(this.message)   
         });
         break;
       }
@@ -71,8 +86,14 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
-
+          // alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Value error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }       
+          alert(this.message) 
         });
         break;
       }
@@ -84,8 +105,14 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
-
+          // alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Value error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }       
+          alert(this.message) 
         });
         break;
       }
@@ -97,8 +124,14 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
-
+          // alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Value error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }       
+          alert(this.message) 
         });
         break;
       }
@@ -110,8 +143,14 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
-
+          // alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Value error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }       
+          alert(this.message) 
         });
         break;
       }
