@@ -5,7 +5,6 @@ import { AlgorithmsService } from '@app/services';
 import { first } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

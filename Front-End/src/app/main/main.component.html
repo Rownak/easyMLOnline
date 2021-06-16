@@ -11,7 +11,17 @@
                           <hr class="border-secondary mb-0 mt-0">
                       </div>
                       <div class="col-auto">
-                          <h4 class="font-weight-bold mb-0 text-uppercase">Input Section</h4>
+                          <h4 class="font-weight-bold mb-0 text-uppercase">Input Section
+                            <button mat-fab popover="Upload a file or write data. Data content must be numeric. Headers can be textual."
+                            popoverTitle="Provide input"
+                            triggers="mouseenter:mouseleave"
+                            title=""
+                            placement="right">
+                            <mat-icon>help</mat-icon>
+                          </button>
+
+                          </h4>
+                          
                       </div>
                       <div class="col">
                           <hr class="border-secondary mb-0 mt-0">
@@ -31,7 +41,15 @@
                           <hr class="border-secondary mb-0 mt-0"/>
                       </div>
                       <div class="col-auto">
-                          <h4 class="font-weight-bold mb-0 text-uppercase">Algorithm Section</h4>
+                          <h4 class="font-weight-bold mb-0 text-uppercase">Algorithm Section
+                            <button mat-fab popover="Choose an algorithm by exploring the drop-down menu."
+                            popoverTitle="Select a Machine Learning Algorithm"
+                            triggers="mouseenter:mouseleave"
+                            title=""
+                            placement="right">
+                                    <mat-icon>help</mat-icon>
+                            </button>
+                          </h4>
                       </div>
                       <div class="col">
                           <hr class="border-secondary mb-0 mt-0"/>
@@ -43,9 +61,45 @@
               <div class="card-body">
                 <div class="btn-group" dropdown [autoClose]="true" container="body" [insideClick]="true" >
                   <button id="button-nested" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
-                          aria-controls="dropdown-nested">
+                          aria-controls="dropdown-nested"
+                          popover="Select a Machine Learning Algorithm here."
+                          popoverTitle="Select Algorithm"
+                          triggers="mouseenter:mouseleave"
+                          title=""
+                          placement="auto">
                           Select Algorithm <span class="caret"></span>
                   </button>
+                  <ng-template #popTemplate>
+  
+                    <h3 class="popover-title popover-header" style="margin: -.5rem -.75rem 0 -.75rem;">Choose an algorithm</h3>
+                    Choose a machine learning algorithm from the menu. Please visit the links below to learn more about the algorithms.<br>
+                    <li>Clustring
+                      <ul>
+                        <li><a href="https://computing4all.com/courses/introductory-data-science/lessons/k-means-clustering-algorithm/" target="_blank">K-Means</a></li>
+                        <li><a href="https://iq.opengenus.org/dbscan-clustering-algorithm/" target="_blank">DB-Scan</a></li>
+                        <li><a href="https://iq.opengenus.org/hierarchical-clustering/" target="_blank">Agglomerative</a></li>
+                      </ul>
+                    </li>
+                    <li>Classification
+                      <ul>
+                      <li><a href="https://iq.opengenus.org/k-nearest-neighbors-algorithm/" target="_blank">K Nearest Neighbors</a></li>
+                      <li><a href="https://iq.opengenus.org/gaussian-naive-bayes/" target="_blank">Gaussian Naive Bayes</a></li>
+                      <li><a href="https://iq.opengenus.org/understand-support-vector-machine-in-depth/" target="_blank">Support Vector Machine</a></li>
+                      </ul>
+                    </li>
+                    
+                    </ng-template>
+                  <button mat-fab 
+                  [popover]="popTemplate"
+                  title=""
+                  placement="right">
+                          <mat-icon>help</mat-icon>
+                  </button>
+                  <script type="text/ng-template" id="popover.html">
+                    <div>
+                      <h1>Popover content</h1>
+                    </div>
+                  </script>
                   <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-nested">
                     <li role="menuitem" dropdown triggers="mouseclick" placement="right" container="body">
@@ -88,7 +142,15 @@
                           <hr class="border-secondary mb-0 mt-0"/>
                       </div>
                       <div class="col-auto">
-                          <h4 class="font-weight-bold mb-0 text-uppercase">Results Section</h4>
+                          <h4 class="font-weight-bold mb-0 text-uppercase">Results Section
+                            <button mat-fab popover="The results are provided here."
+                            popoverTitle="Results Panel"
+                            triggers="mouseenter:mouseleave"
+                            title=""
+                            placement="right">
+                            <mat-icon>help</mat-icon>
+                          </button>
+                          </h4>
                       </div>
                       <div class="col">
                           <hr class="border-secondary mb-0 mt-0"/>
@@ -101,9 +163,8 @@
               <tabset>
                 <tab *ngFor="let tabz of tabs"
                      [heading]="tabz.id"
-                     [active]="tabz.active"
+                     [active]="true"
                      (selectTab)="tabz.active = true"
-                     (deselect)="tabz.active = false"
                      [disabled]="tabz.disabled"
                      [removable]="true"
                      (removed)="removeTabHandler(tabz)"

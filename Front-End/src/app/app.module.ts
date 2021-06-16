@@ -31,6 +31,9 @@ import { AllStudentsActivityComponent } from './teacher-view/all-students-activi
 import { DataTablesModule } from 'angular-datatables';
 import { ActivityByCourseComponent } from './teacher-view/activity-by-course/activity-by-course.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 // npm install jquery --save
 // npm install datatables.net --save
 // npm install datatables.net-dt --save
@@ -57,7 +60,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ClassificationResultsComponent,
     TeacherViewComponent,
     AllStudentsActivityComponent,
-    ActivityByCourseComponent
+    ActivityByCourseComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgxCsvParserModule,
     DataTablesModule,
     NgSelectModule,
+    PopoverModule.forRoot(),
+    MatButtonModule,
+    MatIconModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

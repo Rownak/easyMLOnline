@@ -26,3 +26,14 @@ npm install ngx-bootstrap --save
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## How to upload on Server
+In local pc:
+ng build
+In server:
+rm -rf /home/ubuntu/html.copy
+mv /home/ubuntu/html /home/ubuntu/html.copy
+mkdir /home/ubuntu/html
+copy local_pc/IDRProject/Front-End/dist/Front-End/* to server/home/ubuntu/html
+sudo rm /var/www/html/*
+sudo cp /home/ubuntu/html/* /var/www/html/

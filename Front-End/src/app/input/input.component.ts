@@ -16,10 +16,10 @@ export class InputComponent implements OnInit {
     startRows: 50,
     startCols: 50,
     colHeaders: function(index) {
-      return 'Feature '+ index;
+      return 'Attribute '+ index;
     },
     rowHeaders: function(index) {
-      return 'Entry '+ index;
+      return 'Object '+ index;
     },
     rowHeaderWidth: 75,
     contextMenu: true,
@@ -41,6 +41,7 @@ export class InputComponent implements OnInit {
   }
 
   handleFileInput(files: FileList){
+
     this.ngxCsvParser.parse(files[0], { header: false, delimiter: ',' })
       .pipe().subscribe((result: Array<any>) => {
         console.log('Result', result);
