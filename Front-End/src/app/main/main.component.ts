@@ -1,9 +1,10 @@
 import { InputComponent } from './../input/input.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Tab } from '@app/models'
 import { AlgorithmsService } from '@app/services';
 import { first } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -13,13 +14,18 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class MainComponent implements OnInit {
 
+
+  @ViewChild('regModal') modal
+  modalRef: BsModalRef;
+  title: string;
+  message: string;
   @ViewChild(InputComponent)
   private inputComponent: InputComponent;
   selectedAlgorithm: string;
   tabs: Tab[];
   private tabCounter: number;
 
-  constructor(private algorithmsService: AlgorithmsService, private spinner: NgxSpinnerService) { }
+  constructor(private algorithmsService: AlgorithmsService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.selectedAlgorithm="";
@@ -31,8 +37,21 @@ export class MainComponent implements OnInit {
     this.selectedAlgorithm=value;
   }
 
+  notNull(value){
+    return value!=null;
+  }
+
+
   runAlgorithm(values){
     var inputData=this.inputComponent.hotRegisterer.getInstance(this.inputComponent.inputID).getData();
+    // var temp =[]
+    // for(var arr in inputData){
+    //   inputData[arr]=inputData[arr].filter(this.notNull)
+    //   if (inputData[arr].length!=0){
+    //     temp.push(inputData[arr])
+    //   }
+    // }
+    // console.log(temp)
     var header = this.inputComponent.header.value;
     this.spinner.show();
     switch(this.selectedAlgorithm){
@@ -44,7 +63,14 @@ export class MainComponent implements OnInit {
         error => {
             console.log(error.error.message);
             this.spinner.hide();
-            alert("An error occurred while calculating the results.\n Please check your data and try again.")
+            this.message='';
+            this.title='Data error';
+            for(let key in error.error){
+              for(let message in error.error[key])
+              this.message+=error.error[key][message]+"\n";
+            }
+            this.openModal(this.modal);
+
 
         });
 
@@ -58,7 +84,13 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Data error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
+          this.openModal(this.modal);
 
         });
         break;
@@ -71,7 +103,13 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Data error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
+          this.openModal(this.modal);
 
         });
         break;
@@ -84,7 +122,13 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Data error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
+          this.openModal(this.modal);
 
         });
         break;
@@ -97,7 +141,13 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Data error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
+          this.openModal(this.modal);
 
         });
         break;
@@ -110,7 +160,13 @@ export class MainComponent implements OnInit {
         error => {
           console.log(error.error.message);
           this.spinner.hide();
-          alert("An error occurred while calculating the results.\n Please check your data and try again.")
+          this.message='';
+          this.title='Data error';
+          for(let key in error.error){
+            for(let message in error.error[key])
+            this.message+=error.error[key][message]+"\n";
+          }
+          this.openModal(this.modal);
 
         });
         break;
@@ -133,6 +189,10 @@ export class MainComponent implements OnInit {
   removeTabHandler(tab: any): void {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 

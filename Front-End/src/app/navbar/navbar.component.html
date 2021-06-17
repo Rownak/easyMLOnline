@@ -9,7 +9,7 @@
           <a class="nav-link" [routerLink]="'/'">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" >Tutorials</a>
+          <a class="nav-link" [routerLink]="'tutorials'" >Tutorials</a>
       </li>
     </ul>
     <button *ngIf="currentUser.is_teacher" type="button" class="btn btn-dark" (click)="teacherView()">Teacher's Area</button>

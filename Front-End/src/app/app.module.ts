@@ -31,6 +31,8 @@ import { AllStudentsActivityComponent } from './teacher-view/all-students-activi
 import { DataTablesModule } from 'angular-datatables';
 import { ActivityByCourseComponent } from './teacher-view/activity-by-course/activity-by-course.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TutorialComponent } from './tutorial/tutorial.component';
 // npm install jquery --save
 // npm install datatables.net --save
 // npm install datatables.net-dt --save
@@ -57,7 +59,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ClassificationResultsComponent,
     TeacherViewComponent,
     AllStudentsActivityComponent,
-    ActivityByCourseComponent
+    ActivityByCourseComponent,
+    TutorialComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    PopoverModule.forRoot(),
     NgxSpinnerModule,
     FormsModule,
     HttpClientModule,

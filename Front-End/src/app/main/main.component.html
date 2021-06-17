@@ -1,6 +1,17 @@
 <ngx-spinner type="ball-pulse">
   <p style="font-size: 20px; color: white">Computing result...</p>
 </ngx-spinner>
+<ng-template #regModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="white-space: pre-line;">
+    {{message}}
+  </div>
+</ng-template>
 <div class="container">
   <div class="accordion" id="accordionExample">
       <div class="card">
@@ -69,6 +80,11 @@
                     </li>
                   </ul>
                 </div>
+                <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
+                popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                placement="auto"[outsideClick]="true">
+                ?
+              </button>
                 <div class="card" [ngSwitch]="selectedAlgorithm">
                   <app-k-means *ngSwitchCase="'K-Means'" (algorithmEmitter)="runAlgorithm($event)"></app-k-means>
                   <app-db-scan *ngSwitchCase="'DBSCAN'" (algorithmEmitter)="runAlgorithm($event)"></app-db-scan>
