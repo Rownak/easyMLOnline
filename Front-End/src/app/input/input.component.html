@@ -17,8 +17,13 @@
           <div class="form-check" style="float: right; ">
             <input class="form-check-input" type="checkbox" id="defaultCheck1" [formControl]="header"/>
             <label class="form-check-label" for="defaultCheck1">
-                Dataset has header
+                Dataset has header?
           </label>
+          <button mat-fab popover="Check if your dataset has column/feature/attribute names. Uncheck if there is no column/feature/attribute name."          triggers="mouseenter:mouseleave"
+          title=""
+          placement="auto">
+          <mat-icon>help</mat-icon>
+          </button>
           </div>
       </div>
   </form>

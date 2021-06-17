@@ -145,8 +145,11 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-#ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 LOGIN_URL = 'http://3.16.161.192/login'
+CUSTOM_PASSWORD_RESET_CONFIRM = 'http://localhost:8000/user/custom/login/'
+
+#LOGIN_URL = 'http://localhost:8000/user/custom/login/'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

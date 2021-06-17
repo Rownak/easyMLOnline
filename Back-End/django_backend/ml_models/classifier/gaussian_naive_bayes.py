@@ -13,6 +13,7 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 from plotting.plot_2d import plot_2d
+from rest_framework import status
 
 
 def gaussian_nb(X_train, y_train,X_test, user_id, features):
@@ -65,7 +66,7 @@ def get_gaussian_nb(request):
             # train_data = [list(filter(None, lst)) for lst in train_data]
             train_data = list(filter(any, train_data))
             train_data = [list(filter(None, lst)) for lst in train_data]
-            if (header == None or header== '0' or header == 'false'):
+            if (not header):
                 features = None
             else:
                 features = train_data.pop(0)
@@ -97,9 +98,15 @@ def get_gaussian_nb(request):
                 'message': 'Invalid Parameters'
             }
     except Exception as e:
-        result = {
-            'error': '2',
-            "message": str(e)
+        response = {
+            'error' : '2',
+            "message": [str(e)]
         }
+        if (str(e) == "could not convert string to float: '?'"):
+            response = {
+                'error': '2',
+                "message": ["The data should contain only decimal values. Check if any datapoint is missing in the table or the attached file"]
+            }
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
     return Response(result)

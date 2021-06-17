@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   title: string;
   message: string;
   @ViewChild(InputComponent)
+
   private inputComponent: InputComponent;
   selectedAlgorithm: string;
   tabs: Tab[];

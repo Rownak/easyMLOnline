@@ -41,6 +41,7 @@ export class InputComponent implements OnInit {
   }
 
   handleFileInput(files: FileList){
+
     this.ngxCsvParser.parse(files[0], { header: false, delimiter: ',' })
       .pipe().subscribe((result: Array<any>) => {
         console.log('Result', result);
