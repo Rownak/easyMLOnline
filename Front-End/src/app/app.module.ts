@@ -32,6 +32,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { ActivityByCourseComponent } from './teacher-view/activity-by-course/activity-by-course.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TutorialComponent } from './tutorial/tutorial.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 // npm install jquery --save
@@ -61,6 +62,7 @@ import { MatIconModule } from '@angular/material/icon';
     TeacherViewComponent,
     AllStudentsActivityComponent,
     ActivityByCourseComponent,
+    TutorialComponent
 
   ],
   imports: [
@@ -71,6 +73,7 @@ import { MatIconModule } from '@angular/material/icon';
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    PopoverModule.forRoot(),
     NgxSpinnerModule,
     FormsModule,
     HttpClientModule,

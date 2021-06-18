@@ -20,7 +20,7 @@ export class InputComponent implements OnInit {
     rowHeaders: function(index) {
       return 'Object '+ index;
     },
-    rowHeaderWidth: 75,
+    rowHeaderWidth: 100,
     contextMenu: true,
     width: '100%',
     height: 650,

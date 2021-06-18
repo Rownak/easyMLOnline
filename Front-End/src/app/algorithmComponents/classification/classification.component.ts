@@ -18,12 +18,12 @@ export class ClassificationComponent implements OnInit {
     startRows: 50,
     startCols: 50,
     colHeaders: function(index) {
-      return 'Feature '+ index;
+      return 'Attribute '+ index;
     },
     rowHeaders: function(index) {
-      return 'Entry '+ index;
+      return 'Object '+ index;
     },
-    rowHeaderWidth: 75,
+    rowHeaderWidth: 100,
     contextMenu: true,
     width: '100%',
     height: 450,

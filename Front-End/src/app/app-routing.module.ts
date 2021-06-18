@@ -1,3 +1,4 @@
+import { TutorialComponent } from './tutorial/tutorial.component';
 import { MainComponent } from './main/main.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'teacher_view', component: TeacherViewComponent,canActivate: [AuthGuard], data: {teacher:true}},
-  {path: '', component: MainComponent, canActivate: [AuthGuard]}
+  {path: 'tutorials', component: TutorialComponent},
+  {path: '', component: MainComponent}//, canActivate: [AuthGuard]}
 
 ];
 

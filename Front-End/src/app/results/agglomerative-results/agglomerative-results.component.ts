@@ -14,9 +14,14 @@ export class AgglomerativeResultsComponent implements OnInit{
 
   private hotRegisterer = new HotTableRegisterer();
   hotSettings: Handsontable.GridSettings= {
-    colHeaders: true,
-    rowHeaders: true,
+    colHeaders: function(index) {
+      return 'Attribute '+ index;
+    },
+    rowHeaders: function(index) {
+      return 'Object '+ index;
+    },
     contextMenu: true,
+    rowHeaderWidth: 100,
     width: '100%',
     height: '100%',
     licenseKey: 'non-commercial-and-evaluation'
