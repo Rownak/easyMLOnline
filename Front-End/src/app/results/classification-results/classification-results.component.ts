@@ -30,7 +30,7 @@ export class ClassificationResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
-    this.tableData=this.data["y_pred"];
+    this.tableData=this.data["test_output"];
   }
 
 }

@@ -30,7 +30,7 @@ export class DbscanResultsComponent implements OnInit {
   ngOnInit(): void {
     this.score=this.data["silhouette_score"];
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
-    this.tableData=this.data["y_db"]
+    this.tableData=this.data["input_output"]
   }
 
 }

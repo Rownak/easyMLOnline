@@ -85,6 +85,7 @@ def get_dbscan(request):
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_db' : y_db.reshape(-1,1),
+                'input_output': np.concatenate((train_data, y_db.reshape(-1, 1)), axis=1),
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }

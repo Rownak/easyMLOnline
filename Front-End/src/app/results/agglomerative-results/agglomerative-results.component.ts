@@ -32,7 +32,7 @@ export class AgglomerativeResultsComponent implements OnInit{
   ngOnInit(): void {
     this.score=this.data["silhouette_score"];
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
-    this.tableData=this.data["y_kmeans"];
+    this.tableData=this.data["input_output"];
   }
 
   refresh(): void{
@@ -40,5 +40,23 @@ export class AgglomerativeResultsComponent implements OnInit{
     hot.refreshDimensions();
     console.log("works?")
   }
+  public exportCSV(event: any) { // without type info
+
+    let exportPlugin1 = this.hotRegisterer.getInstance(this.resultID).getPlugin('exportFile');
+
+     exportPlugin1.downloadFile('csv', {
+      bom: false,
+      columnDelimiter: ',',
+      columnHeaders: false,
+      rowHeaders: false,
+      exportHiddenColumns: true,
+      exportHiddenRows: true,
+      fileExtension: 'csv',
+      filename: 'output-file_[YYYY]-[MM]-[DD]',
+      mimeType: 'text/csv',
+      rowDelimiter: '\r\n',
+    });
+  };
+  
 
 }

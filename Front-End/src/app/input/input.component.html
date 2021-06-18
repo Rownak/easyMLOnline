@@ -25,5 +25,6 @@
   </form>
   <div class="hot">
     <hot-table [settings]="hotSettings" [hotId]='inputID'></hot-table>
+    <button id="search_field" type="search" placeholder="Search" (click)="exportCSV($event)">Export file</button>
   </div>
 </div>

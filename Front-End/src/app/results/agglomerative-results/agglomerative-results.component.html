@@ -4,7 +4,8 @@
           <h4>Cluster labels</h4>
           <div class="hot">
             <hot-table [settings]="hotSettings" [hotId]='resultID' [data]="tableData"></hot-table>
-          </div>
+            <button id="search_field" type="search" placeholder="Search" (click)="exportCSV($event)">Export file</button>  
+        </div>
       </div>
       <div class="col-md-7">
           <h4>Result Metrics</h4>

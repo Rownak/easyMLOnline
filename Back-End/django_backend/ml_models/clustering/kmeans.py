@@ -81,10 +81,12 @@ def get_kmeans(request):
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_kmeans' : y_kmeans.reshape(-1,1),
+                'input_output': np.concatenate((train_data, y_kmeans.reshape(-1, 1)), axis=1),
                 'ssd' : ssd_kmeans,
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }
+            #print("concate:",np.concatenate((train_data, y_kmeans.T), axis=1))
             user = CustomUser.objects.get(id=user_id)
             activity = Student_activity.objects.create(user=user, ml_model="kmeans", n_rows=train_data.shape[0], n_columns=train_data.shape[1])
             serializer = StudentActivitySerializer(activity)

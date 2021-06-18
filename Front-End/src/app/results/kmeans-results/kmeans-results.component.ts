@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Handsontable from 'handsontable';
 import { environment } from '@environments/environment';
+import { HotTableRegisterer } from '@handsontable/angular';
+import { InputComponent } from '../../input/input.component';
 
 @Component({
   selector: 'app-kmeans-results',
@@ -10,13 +12,22 @@ import { environment } from '@environments/environment';
 export class KmeansResultsComponent implements OnInit {
 
   @Input() data;
-
+  private hotRegisterer = new HotTableRegisterer();
+  private inputComponent: InputComponent;
   hotSettings: Handsontable.GridSettings= {
-    colHeaders: true,
-    rowHeaders: true,
+    startRows: 50,
+    startCols: 50,
+    colHeaders: function(index) {
+      return 'Attribute '+ index;
+    },
+    rowHeaders: function(index) {
+      return 'Object '+ index;
+    },
     contextMenu: true,
-    width: '100%',
-    height: '100%',
+    
+    rowHeaderWidth: 75,
+    width: 300,
+    height: 300,
     licenseKey: 'non-commercial-and-evaluation'
   };
 
@@ -32,7 +43,28 @@ export class KmeansResultsComponent implements OnInit {
     this.score=this.data["silhouette_score"];
     this.ssd=this.data["ssd"]
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
-    this.tableData=this.data["y_kmeans"]
+    
+    this.tableData=this.data["input_output"]
+    
+
   }
+
+  public exportCSV(event: any) { // without type info
+
+    let exportPlugin1 = this.hotRegisterer.getInstance(this.resultID).getPlugin('exportFile');
+
+     exportPlugin1.downloadFile('csv', {
+      bom: false,
+      columnDelimiter: ',',
+      columnHeaders: false,
+      rowHeaders: false,
+      exportHiddenColumns: true,
+      exportHiddenRows: true,
+      fileExtension: 'csv',
+      filename: 'output-file_[YYYY]-[MM]-[DD]',
+      mimeType: 'text/csv',
+      rowDelimiter: '\r\n',
+    });
+  };
 
 }

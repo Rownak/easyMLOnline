@@ -50,16 +50,15 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'ml_models',
     'users',
-    #'corsheaders'
+    'corsheaders'
 
 ]
 
 MIDDLEWARE = [
-    #'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.BrokenLinkEmailsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -114,10 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:4200/"
-# ]
-#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200"
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -147,11 +145,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+#ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 LOGIN_URL = 'http://3.16.161.192/login'
-CUSTOM_PASSWORD_RESET_CONFIRM = 'http://localhost:8000/user/custom/login/'
-
-#LOGIN_URL = 'http://localhost:8000/user/custom/login/'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

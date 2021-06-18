@@ -87,6 +87,7 @@ def get_gaussian_nb(request):
                 'error': '0',
                 'message': 'Successfull',
                 'y_pred': y_pred.reshape(-1, 1),
+                'test_output': np.concatenate((X_test, y_pred.reshape(-1, 1)), axis=1),
                 'plt_url': plt_url
             }
             user = CustomUser.objects.get(id=user_id)

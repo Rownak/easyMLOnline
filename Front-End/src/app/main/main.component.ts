@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   private tabCounter: number;
   title: string;
   message: string;
-
+  trainData: any;
   constructor(private algorithmsService: AlgorithmsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -35,6 +35,7 @@ export class MainComponent implements OnInit {
 
   runAlgorithm(values){
     var inputData=this.inputComponent.hotRegisterer.getInstance(this.inputComponent.inputID).getData();
+    this.trainData = inputData;
     var header = this.inputComponent.header.value;
     this.spinner.show();
     switch(this.selectedAlgorithm){

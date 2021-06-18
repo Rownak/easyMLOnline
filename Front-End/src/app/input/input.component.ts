@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import Handsontable from 'handsontable';
 import { HotTableRegisterer } from '@handsontable/angular';
 import { NgxCsvParser,NgxCSVParserError } from 'ngx-csv-parser';
@@ -10,7 +10,6 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-
   hotRegisterer = new HotTableRegisterer();
   hotSettings: Handsontable.GridSettings= {
     startRows: 50,
@@ -36,7 +35,6 @@ export class InputComponent implements OnInit {
   error:string;
 
   constructor(private ngxCsvParser: NgxCsvParser) { }
-
   ngOnInit(): void {
   }
 
@@ -47,9 +45,28 @@ export class InputComponent implements OnInit {
         console.log('Result', result);
         this.csvRecords = result;
         this.hotRegisterer.getInstance(this.inputID).loadData(this.csvRecords)
+        
       }, (error: NgxCSVParserError) => {
         console.log('Error', error);
       });
   }
+
+  public exportCSV(event: any) { // without type info
+
+    let exportPlugin1 = this.hotRegisterer.getInstance(this.inputID).getPlugin('exportFile');
+
+     exportPlugin1.downloadFile('csv', {
+      bom: false,
+      columnDelimiter: ',',
+      columnHeaders: false,
+      rowHeaders: false,
+      exportHiddenColumns: true,
+      exportHiddenRows: true,
+      fileExtension: 'csv',
+      filename: 'input-file_[YYYY]-[MM]-[DD]',
+      mimeType: 'text/csv',
+      rowDelimiter: '\r\n',
+    });
+  };
 
 }
