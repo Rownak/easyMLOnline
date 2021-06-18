@@ -68,5 +68,21 @@ export class ClassificationComponent implements OnInit {
 
     this.algorithmEmitter.emit({"labelsCol":this.f.labelsCol.value,"testData":this.hotRegisterer.getInstance(this.tableID).getData(),"runName":this.f.runName.value,});
   }
+  public exportCSV(event: any) { // without type info
+    let exportPlugin1 = this.hotRegisterer.getInstance(this.tableID).getPlugin('exportFile');
+    
+     exportPlugin1.downloadFile('csv', {
+      bom: false,
+      columnDelimiter: ',',
+      columnHeaders: true,
+      rowHeaders: true,
+      exportHiddenColumns: true,
+      exportHiddenRows: true,
+      fileExtension: 'csv',
+      filename: this.title+'_test_[YYYY]-[MM]-[DD]',
+      mimeType: 'text/csv',
+      rowDelimiter: '\r\n',
+    });
+  };
 
 }

@@ -9646,9 +9646,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function ClassificationComponent_div_14_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 19);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, ClassificationComponent_div_14_div_1_Template, 2, 0, "div", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, ClassificationComponent_div_14_div_1_Template, 2, 0, "div", 20);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
@@ -9742,6 +9742,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             "runName": this.f.runName.value
           });
         }
+      }, {
+        key: "exportCSV",
+        value: function exportCSV(event) {
+          var exportPlugin1 = this.hotRegisterer.getInstance(this.tableID).getPlugin('exportFile');
+          exportPlugin1.downloadFile('csv', {
+            bom: false,
+            columnDelimiter: ',',
+            columnHeaders: true,
+            rowHeaders: true,
+            exportHiddenColumns: true,
+            exportHiddenRows: true,
+            fileExtension: 'csv',
+            filename: this.title + '_test_[YYYY]-[MM]-[DD]',
+            mimeType: 'text/csv',
+            rowDelimiter: '\r\n'
+          });
+        }
       }]);
 
       return ClassificationComponent;
@@ -9760,9 +9777,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       outputs: {
         algorithmEmitter: "algorithmEmitter"
       },
-      decls: 31,
+      decls: 34,
       vars: 10,
-      consts: [[1, "card-body"], [1, "row"], [1, "col"], [1, "card-title"], [1, "col", 2, "text-align", "right"], ["type", "button", "popover", "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "placement", "auto", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px", 3, "outsideClick"], [3, "formGroup"], ["for", "labelsCol"], ["type", "number", "min", "-1", "placeholder", "0", "formControlName", "labelsCol", 1, "form-control", 3, "ngClass"], ["class", "invalid-feedback", 4, "ngIf"], ["for", "exampleInputEmail1"], ["type", "text", "formControlName", "runName", 1, "form-control", 3, "placeholder"], [1, "hot"], [3, "settings", "hotId"], ["for", "exampleFormControlFile1"], ["type", "file", "accept", ".csv", 1, "form-control-file", 3, "change"], [1, "container", 2, "display", "flex", "padding", "20px 60px", "justify-content", "center", "flex-direction", "column", "max-width", "400px"], ["type", "submit", 1, "btn", "btn-primary", 3, "click"], [1, "invalid-feedback"], [4, "ngIf"]],
+      consts: [[1, "card-body"], [1, "row"], [1, "col"], [1, "card-title"], [1, "col", 2, "text-align", "right"], ["type", "button", "popover", "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "placement", "auto", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px", 3, "outsideClick"], [3, "formGroup"], ["for", "labelsCol"], ["type", "number", "min", "-1", "placeholder", "0", "formControlName", "labelsCol", 1, "form-control", 3, "ngClass"], ["class", "invalid-feedback", 4, "ngIf"], ["for", "exampleInputEmail1"], ["type", "text", "formControlName", "runName", 1, "form-control", 3, "placeholder"], [1, "hot"], [3, "settings", "hotId"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], ["for", "exampleFormControlFile1"], ["type", "file", "accept", ".csv", 1, "form-control-file", 3, "change"], [1, "container", 2, "display", "flex", "padding", "20px 60px", "justify-content", "center", "flex-direction", "column", "max-width", "400px"], ["type", "submit", 1, "btn", "btn-primary", 3, "click"], [1, "invalid-feedback"], [4, "ngIf"]],
       template: function ClassificationComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -9845,29 +9862,41 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "label", 14);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "button", 14);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Enter data from file (Optional)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ClassificationComponent_Template_button_click_25_listener($event) {
+            return ctx.exportCSV($event);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Export file");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "input", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](27, "br");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function ClassificationComponent_Template_input_change_27_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](28, "label", 15);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](29, "Enter data from file (Optional)");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "input", 16);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function ClassificationComponent_Template_input_change_30_listener($event) {
             return ctx.handleFileInput($event.target.files);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](28, "div", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "div", 17);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "button", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "button", 18);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ClassificationComponent_Template_button_click_29_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ClassificationComponent_Template_button_click_32_listener() {
             return ctx.runAlgorithm();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, "Run Algorithm");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](33, "Run Algorithm");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -14054,17 +14083,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.hotRegisterer = new _handsontable_angular__WEBPACK_IMPORTED_MODULE_2__["HotTableRegisterer"]();
         this.hotSettings = {
           colHeaders: function colHeaders(index) {
-            return 'Attribute ' + index;
+            if (index == 0) {
+              return 'Labels';
+            }
+
+            return 'Attribute ' + String(Number(index) - 1);
           },
           rowHeaders: function rowHeaders(index) {
             return 'Object ' + index;
           },
           contextMenu: true,
-          rowHeaderWidth: 100,
+          rowHeaderWidth: 75,
           width: '100%',
           height: '100%',
           licenseKey: 'non-commercial-and-evaluation'
         };
+        this.resultID = 'result-table';
         this.score = 0.0;
         this.plotLink = "";
       }
@@ -14075,14 +14109,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.score = this.data["silhouette_score"];
           this.plotLink = "".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl, "/api/") + this.data["plt_url"];
           this.tableData = this.data["input_output"];
-        }
-      }, {
-        key: "refresh",
-        value: function refresh() {
-          var hot = this.hotRegisterer.getInstance(this.resultID);
-          hot.refreshDimensions();
-          console.log("works?");
-        }
+        } // refresh(): void{
+        //   const hot = this.hotRegisterer.getInstance(this.resultID);
+        //   hot.refreshDimensions();
+        //   console.log("works?")
+        // }
+
       }, {
         key: "exportCSV",
         value: function exportCSV(event) {
@@ -14090,12 +14122,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           exportPlugin1.downloadFile('csv', {
             bom: false,
             columnDelimiter: ',',
-            columnHeaders: false,
-            rowHeaders: false,
+            columnHeaders: true,
+            rowHeaders: true,
             exportHiddenColumns: true,
             exportHiddenRows: true,
             fileExtension: 'csv',
-            filename: 'output-file_[YYYY]-[MM]-[DD]',
+            filename: 'agglomerative_output_[YYYY]-[MM]-[DD]',
             mimeType: 'text/csv',
             rowDelimiter: '\r\n'
           });
@@ -14113,8 +14145,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: AgglomerativeResultsComponent,
       selectors: [["app-agglomerative-results"]],
       inputs: {
-        data: "data",
-        resultID: "resultID"
+        data: "data"
       },
       decls: 23,
       vars: 5,
@@ -14234,9 +14265,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         data: [{
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
-        }],
-        resultID: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }]
       });
     })();
@@ -14289,7 +14317,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.hotRegisterer = new _handsontable_angular__WEBPACK_IMPORTED_MODULE_2__["HotTableRegisterer"]();
         this.hotSettings = {
           colHeaders: function colHeaders(index) {
-            return 'Attribute ' + index;
+            if (index == 0) {
+              return 'Labels';
+            }
+
+            return 'Attribute ' + String(Number(index) - 1);
           },
           rowHeaders: function rowHeaders(index) {
             return 'Object ' + index;
@@ -14299,7 +14331,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           width: '100%',
           height: '100%',
           licenseKey: 'non-commercial-and-evaluation'
-        };
+        }; // @Input() resultID: string;
+
+        this.resultID = 'result-table';
         this.plotLink = "";
       }
 
@@ -14339,8 +14373,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: ClassificationResultsComponent,
       selectors: [["app-classification-results"]],
       inputs: {
-        data: "data",
-        resultID: "resultID"
+        data: "data"
       },
       decls: 13,
       vars: 4,
@@ -14422,9 +14455,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         data: [{
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
-        }],
-        resultID: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }]
       });
     })();
@@ -14477,7 +14507,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.hotRegisterer = new _handsontable_angular__WEBPACK_IMPORTED_MODULE_2__["HotTableRegisterer"]();
         this.hotSettings = {
           colHeaders: function colHeaders(index) {
-            return 'Attribute ' + index;
+            if (index == 0) {
+              return 'Labels';
+            }
+
+            return 'Attribute ' + String(Number(index) - 1);
           },
           rowHeaders: function rowHeaders(index) {
             return 'Object ' + index;
@@ -14507,8 +14541,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           exportPlugin1.downloadFile('csv', {
             bom: false,
             columnDelimiter: ',',
-            columnHeaders: false,
-            rowHeaders: false,
+            columnHeaders: true,
+            rowHeaders: true,
             exportHiddenColumns: true,
             exportHiddenRows: true,
             fileExtension: 'csv',
@@ -14702,7 +14736,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.hotRegisterer = new _handsontable_angular__WEBPACK_IMPORTED_MODULE_2__["HotTableRegisterer"]();
         this.hotSettings = {
           colHeaders: function colHeaders(index) {
-            return 'Attribute ' + index;
+            if (index == 0) {
+              return 'Labels';
+            }
+
+            return 'Attribute ' + String(Number(index) - 1);
           },
           rowHeaders: function rowHeaders(index) {
             return 'Object ' + index;
@@ -14734,8 +14772,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           exportPlugin1.downloadFile('csv', {
             bom: false,
             columnDelimiter: ',',
-            columnHeaders: false,
-            rowHeaders: false,
+            columnHeaders: true,
+            rowHeaders: true,
             exportHiddenColumns: true,
             exportHiddenRows: true,
             fileExtension: 'csv',

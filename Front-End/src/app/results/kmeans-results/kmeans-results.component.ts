@@ -17,7 +17,10 @@ export class KmeansResultsComponent implements OnInit {
   hotSettings: Handsontable.GridSettings= {
 
     colHeaders: function(index) {
-      return 'Attribute '+ index;
+      if(index==0){
+        return 'Labels';
+      }
+      return 'Attribute '+ String(Number(index)-1);
     },
     rowHeaders: function(index) {
       return 'Object '+ index;
