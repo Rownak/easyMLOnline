@@ -33,8 +33,6 @@ import { ActivityByCourseComponent } from './teacher-view/activity-by-course/act
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TutorialComponent } from './tutorial/tutorial.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 // npm install jquery --save
 // npm install datatables.net --save
 // npm install datatables.net-dt --save
@@ -81,9 +79,7 @@ import { MatIconModule } from '@angular/material/icon';
     NgxCsvParserModule,
     DataTablesModule,
     NgSelectModule,
-    PopoverModule.forRoot(),
-    MatButtonModule,
-    MatIconModule
+    PopoverModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

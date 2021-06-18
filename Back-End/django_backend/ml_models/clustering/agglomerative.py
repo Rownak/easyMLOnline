@@ -71,7 +71,7 @@ def get_agglomerative(request):
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_kmeans' : y_agg.reshape(-1,1),
-                'input_output': np.concatenate((train_data, y_agg.reshape(-1, 1)), axis=1),
+                'input_output': np.concatenate((y_agg.reshape(-1, 1), train_data), axis=1),
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }

@@ -4,21 +4,32 @@
           <div class="align-items-center row">
             <div class="col">
               <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
+              <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
+              popover="Please use CSV only. Data content must be numeric. Header can be textual."
+              popoverTitle="Upload Data"
+              triggers="mouseenter:mouseleave"
+              title=""
+              placement="right">
+              ?
+            </button>
             </div>
+
             <div class="col" style="text-align: right;" >
             </div>
           </div>
           <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+          
           <div class="form-check" style="float: right; ">
             <input class="form-check-input" type="checkbox" id="defaultCheck1" [formControl]="header"/>
             <label class="form-check-label" for="defaultCheck1">
                 Dataset has header?
           </label>
           <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
-          popover="Check if your dataset has column/feature/attribute names. Uncheck if there is no column/feature/attribute name."          triggers="mouseenter:mouseleave"
+          popover="Check the box if your dataset has column or feature or attribute names. Uncheck if there is no column or feature or attribute name."          
+          triggers="mouseenter:mouseleave"
           title=""
           placement="auto">
-          <mat-icon>help</mat-icon>
+          ?
           </button>
           </div>
       </div>

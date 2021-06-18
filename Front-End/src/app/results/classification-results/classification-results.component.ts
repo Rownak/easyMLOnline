@@ -37,5 +37,22 @@ export class ClassificationResultsComponent implements OnInit {
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
     this.tableData=this.data["test_output"];
   }
+  public exportCSV(event: any) { // without type info
+
+    let exportPlugin1 = this.hotRegisterer.getInstance(this.resultID).getPlugin('exportFile');
+
+     exportPlugin1.downloadFile('csv', {
+      bom: false,
+      columnDelimiter: ',',
+      columnHeaders: false,
+      rowHeaders: false,
+      exportHiddenColumns: true,
+      exportHiddenRows: true,
+      fileExtension: 'csv',
+      filename: 'dbScan_output_[YYYY]-[MM]-[DD]',
+      mimeType: 'text/csv',
+      rowDelimiter: '\r\n',
+    });
+  };
 
 }

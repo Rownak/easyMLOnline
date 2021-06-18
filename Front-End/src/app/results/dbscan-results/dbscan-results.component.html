@@ -3,6 +3,7 @@
       <div class="col-md-5" style="max-height: 700px; min-height: 300px;">
           <h4>Cluster labels</h4>
           <div class="hot">
+            <button id="search_field" type="search" placeholder="Search" (click)="exportCSV($event)">Export file</button>
             <hot-table [settings]="hotSettings" [hotId]='resultID' [data]="tableData"></hot-table>
           </div>
       </div>

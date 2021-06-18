@@ -81,7 +81,7 @@ def get_kmeans(request):
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_kmeans' : y_kmeans.reshape(-1,1),
-                'input_output': np.concatenate((train_data, y_kmeans.reshape(-1, 1)), axis=1),
+                'input_output': np.concatenate((y_kmeans.reshape(-1, 1), train_data), axis=1),
                 'ssd' : ssd_kmeans,
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url

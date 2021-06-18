@@ -15,8 +15,7 @@ export class KmeansResultsComponent implements OnInit {
   private hotRegisterer = new HotTableRegisterer();
   private inputComponent: InputComponent;
   hotSettings: Handsontable.GridSettings= {
-    startRows: 50,
-    startCols: 50,
+
     colHeaders: function(index) {
       return 'Attribute '+ index;
     },
@@ -26,8 +25,8 @@ export class KmeansResultsComponent implements OnInit {
     contextMenu: true,
     
     rowHeaderWidth: 75,
-    width: 300,
-    height: 300,
+    width: '100%',
+    height: '100%',
     licenseKey: 'non-commercial-and-evaluation'
   };
 
@@ -61,7 +60,7 @@ export class KmeansResultsComponent implements OnInit {
       exportHiddenColumns: true,
       exportHiddenRows: true,
       fileExtension: 'csv',
-      filename: 'output-file_[YYYY]-[MM]-[DD]',
+      filename: 'kmeans_output_[YYYY]-[MM]-[DD]',
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });
