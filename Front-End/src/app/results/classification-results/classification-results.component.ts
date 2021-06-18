@@ -27,7 +27,8 @@ export class ClassificationResultsComponent implements OnInit {
     licenseKey: 'non-commercial-and-evaluation'
   };
 
-  @Input() resultID: string;
+  // @Input() resultID: string;
+  resultID: string = 'result-table';
   plotLink:string ="";
   tableData;
 

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '@environments/environment';
-import { HotTableRegisterer } from '@handsontable/angular';
 import Handsontable from 'handsontable';
+import { HotTableRegisterer } from '@handsontable/angular';
 
 @Component({
   selector: 'app-agglomerative-results',
@@ -21,13 +21,14 @@ export class AgglomerativeResultsComponent implements OnInit{
       return 'Object '+ index;
     },
     contextMenu: true,
-    rowHeaderWidth: 100,
+    
+    rowHeaderWidth: 75,
     width: '100%',
     height: '100%',
     licenseKey: 'non-commercial-and-evaluation'
   };
 
-  @Input() resultID: string;
+  resultID: string = 'result-table';
   score:number =0.0;
   plotLink:string ="";
   tableData;
@@ -40,24 +41,23 @@ export class AgglomerativeResultsComponent implements OnInit{
     this.tableData=this.data["input_output"];
   }
 
-  refresh(): void{
-    const hot = this.hotRegisterer.getInstance(this.resultID);
-    hot.refreshDimensions();
-    console.log("works?")
-  }
+  // refresh(): void{
+  //   const hot = this.hotRegisterer.getInstance(this.resultID);
+  //   hot.refreshDimensions();
+  //   console.log("works?")
+  // }
   public exportCSV(event: any) { // without type info
-
     let exportPlugin1 = this.hotRegisterer.getInstance(this.resultID).getPlugin('exportFile');
-
+      
      exportPlugin1.downloadFile('csv', {
       bom: false,
       columnDelimiter: ',',
-      columnHeaders: false,
-      rowHeaders: false,
+      columnHeaders: true,
+      rowHeaders: true,
       exportHiddenColumns: true,
       exportHiddenRows: true,
       fileExtension: 'csv',
-      filename: 'output-file_[YYYY]-[MM]-[DD]',
+      filename: 'agglomerative_output_[YYYY]-[MM]-[DD]',
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });

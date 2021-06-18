@@ -49,14 +49,13 @@ export class KmeansResultsComponent implements OnInit {
   }
 
   public exportCSV(event: any) { // without type info
-
     let exportPlugin1 = this.hotRegisterer.getInstance(this.resultID).getPlugin('exportFile');
-
+    
      exportPlugin1.downloadFile('csv', {
       bom: false,
       columnDelimiter: ',',
-      columnHeaders: false,
-      rowHeaders: false,
+      columnHeaders: true,
+      rowHeaders: true,
       exportHiddenColumns: true,
       exportHiddenRows: true,
       fileExtension: 'csv',

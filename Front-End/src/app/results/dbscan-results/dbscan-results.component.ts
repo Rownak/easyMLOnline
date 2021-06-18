@@ -45,8 +45,8 @@ export class DbscanResultsComponent implements OnInit {
      exportPlugin1.downloadFile('csv', {
       bom: false,
       columnDelimiter: ',',
-      columnHeaders: false,
-      rowHeaders: false,
+      columnHeaders: true,
+      rowHeaders: true,
       exportHiddenColumns: true,
       exportHiddenRows: true,
       fileExtension: 'csv',
