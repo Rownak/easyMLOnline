@@ -8341,40 +8341,40 @@ function MainComponent_app_classification_52_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("title", "Support Vector Machine");
 } }
 function MainComponent_tab_69_app_kmeans_results_2_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-kmeans-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-kmeans-results", 59);
 } if (rf & 2) {
     const tabz_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData);
 } }
 function MainComponent_tab_69_app_dbscan_results_3_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-dbscan-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-dbscan-results", 59);
 } if (rf & 2) {
     const tabz_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData);
 } }
 function MainComponent_tab_69_app_agglomerative_results_4_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-agglomerative-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-agglomerative-results", 59);
 } if (rf & 2) {
     const tabz_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData);
 } }
 function MainComponent_tab_69_app_classification_results_5_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-classification-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-classification-results", 60);
 } if (rf & 2) {
     const tabz_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData)("title", "KNN");
 } }
 function MainComponent_tab_69_app_classification_results_6_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-classification-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-classification-results", 60);
 } if (rf & 2) {
     const tabz_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData)("title", "NaiveBayes");
 } }
 function MainComponent_tab_69_app_classification_results_7_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-classification-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-classification-results", 60);
 } if (rf & 2) {
     const tabz_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData)("title", "SVM");
 } }
 function MainComponent_tab_69_Template(rf, ctx) { if (rf & 1) {
     const _r53 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
@@ -8384,9 +8384,9 @@ function MainComponent_tab_69_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, MainComponent_tab_69_app_kmeans_results_2_Template, 1, 1, "app-kmeans-results", 57);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](3, MainComponent_tab_69_app_dbscan_results_3_Template, 1, 1, "app-dbscan-results", 57);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, MainComponent_tab_69_app_agglomerative_results_4_Template, 1, 1, "app-agglomerative-results", 57);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, MainComponent_tab_69_app_classification_results_5_Template, 1, 1, "app-classification-results", 57);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](6, MainComponent_tab_69_app_classification_results_6_Template, 1, 1, "app-classification-results", 57);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](7, MainComponent_tab_69_app_classification_results_7_Template, 1, 1, "app-classification-results", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, MainComponent_tab_69_app_classification_results_5_Template, 1, 2, "app-classification-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](6, MainComponent_tab_69_app_classification_results_6_Template, 1, 2, "app-classification-results", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](7, MainComponent_tab_69_app_classification_results_7_Template, 1, 2, "app-classification-results", 58);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -8562,7 +8562,7 @@ MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComp
         var _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.modal = _t.first);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.inputComponent = _t.first);
-    } }, decls: 70, vars: 12, consts: [["type", "ball-pulse"], [2, "font-size", "20px", "color", "white"], ["regModal", ""], [1, "container"], ["id", "accordionExample", 1, "accordion"], [1, "card"], ["id", "headingOne", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseOne", "aria-expanded", "true", "aria-controls", "collapseOne", 1, "container", "pb-4", "pt-4"], [1, "align-items-center", "row"], [1, "col"], [1, "border-secondary", "mb-0", "mt-0"], [1, "col-auto"], [1, "font-weight-bold", "mb-0", "text-uppercase"], ["type", "button", "popover", "Upload a file or write data. Data content must be numeric. Headers can be textual.", "popoverTitle", "Provide input", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseOne", "aria-labelledby", "headingOne", 1, "collapse", "show"], ["id", "headingTwo", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseTwo", "aria-expanded", "false", "aria-controls", "collapseTwo", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "Choose an algorithm by exploring the drop-down menu.", "popoverTitle", "Select a Machine Learning Algorithm", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseTwo", "aria-labelledby", "headingTwo", 1, "collapse"], [1, "card-body"], ["dropdown", "", "container", "body", 1, "btn-group", 3, "autoClose", "insideClick"], ["id", "button-nested", "dropdownToggle", "", "type", "button", "aria-controls", "dropdown-nested", 1, "btn", "btn-secondary", "dropdown-toggle"], [1, "caret"], ["popTemplate", ""], ["type", "button", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px", 3, "popover", "outsideClick"], ["id", "dropdown-nested", "class", "dropdown-menu", "role", "menu", "aria-labelledby", "button-nested", 4, "dropdownMenu"], [1, "card", 3, "ngSwitch"], [3, "algorithmEmitter", 4, "ngSwitchCase"], [3, "title", "algorithmEmitter", 4, "ngSwitchCase"], ["id", "headingThree", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree", "aria-expanded", "false", "aria-controls", "collapseThree", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "The results are provided here.", "popoverTitle", "Results Panel", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseThree", "aria-labelledby", "headingThree"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "removed", 4, "ngFor", "ngForOf"], [1, "modal-header"], [1, "modal-title", "pull-left"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body", 2, "white-space", "pre-line"], [1, "popover-title", "popover-header", 2, "margin", "-.5rem -.75rem 0 -.75rem"], ["href", "https://computing4all.com/courses/introductory-data-science/lessons/k-means-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/dbscan-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/hierarchical-clustering/", "target", "_blank"], ["href", "https://iq.opengenus.org/k-nearest-neighbors-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/gaussian-naive-bayes/", "target", "_blank"], ["href", "https://iq.opengenus.org/understand-support-vector-machine-in-depth/", "target", "_blank"], ["id", "dropdown-nested", "role", "menu", "aria-labelledby", "button-nested", 1, "dropdown-menu"], ["role", "menuitem", "dropdown", "", "triggers", "mouseclick", "placement", "right", "container", "body"], ["dropdownToggle", "", 1, "dropdown-item", "dropdown-toggle", 3, "click"], ["class", "dropdown-menu", "role", "menu", 4, "dropdownMenu"], ["role", "menu", 1, "dropdown-menu"], ["role", "menuitem"], [1, "dropdown-item", 3, "click"], [3, "algorithmEmitter"], [3, "title", "algorithmEmitter"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "removed"], [3, "ngSwitch"], [3, "data", 4, "ngSwitchCase"], [3, "data"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 70, vars: 12, consts: [["type", "ball-pulse"], [2, "font-size", "20px", "color", "white"], ["regModal", ""], [1, "container"], ["id", "accordionExample", 1, "accordion"], [1, "card"], ["id", "headingOne", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseOne", "aria-expanded", "true", "aria-controls", "collapseOne", 1, "container", "pb-4", "pt-4"], [1, "align-items-center", "row"], [1, "col"], [1, "border-secondary", "mb-0", "mt-0"], [1, "col-auto"], [1, "font-weight-bold", "mb-0", "text-uppercase"], ["type", "button", "popover", "Upload a file or write data. Data content must be numeric. Headers can be textual.", "popoverTitle", "Provide input", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseOne", "aria-labelledby", "headingOne", 1, "collapse", "show"], ["id", "headingTwo", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseTwo", "aria-expanded", "false", "aria-controls", "collapseTwo", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "Choose an algorithm by exploring the drop-down menu.", "popoverTitle", "Select a Machine Learning Algorithm", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseTwo", "aria-labelledby", "headingTwo", 1, "collapse"], [1, "card-body"], ["dropdown", "", "container", "body", 1, "btn-group", 3, "autoClose", "insideClick"], ["id", "button-nested", "dropdownToggle", "", "type", "button", "aria-controls", "dropdown-nested", 1, "btn", "btn-secondary", "dropdown-toggle"], [1, "caret"], ["popTemplate", ""], ["type", "button", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px", 3, "popover", "outsideClick"], ["id", "dropdown-nested", "class", "dropdown-menu", "role", "menu", "aria-labelledby", "button-nested", 4, "dropdownMenu"], [1, "card", 3, "ngSwitch"], [3, "algorithmEmitter", 4, "ngSwitchCase"], [3, "title", "algorithmEmitter", 4, "ngSwitchCase"], ["id", "headingThree", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree", "aria-expanded", "false", "aria-controls", "collapseThree", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "The results are provided here.", "popoverTitle", "Results Panel", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseThree", "aria-labelledby", "headingThree"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "removed", 4, "ngFor", "ngForOf"], [1, "modal-header"], [1, "modal-title", "pull-left"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body", 2, "white-space", "pre-line"], [1, "popover-title", "popover-header", 2, "margin", "-.5rem -.75rem 0 -.75rem"], ["href", "https://computing4all.com/courses/introductory-data-science/lessons/k-means-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/dbscan-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/hierarchical-clustering/", "target", "_blank"], ["href", "https://iq.opengenus.org/k-nearest-neighbors-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/gaussian-naive-bayes/", "target", "_blank"], ["href", "https://iq.opengenus.org/understand-support-vector-machine-in-depth/", "target", "_blank"], ["id", "dropdown-nested", "role", "menu", "aria-labelledby", "button-nested", 1, "dropdown-menu"], ["role", "menuitem", "dropdown", "", "triggers", "mouseclick", "placement", "right", "container", "body"], ["dropdownToggle", "", 1, "dropdown-item", "dropdown-toggle", 3, "click"], ["class", "dropdown-menu", "role", "menu", 4, "dropdownMenu"], ["role", "menu", 1, "dropdown-menu"], ["role", "menuitem"], [1, "dropdown-item", 3, "click"], [3, "algorithmEmitter"], [3, "title", "algorithmEmitter"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "removed"], [3, "ngSwitch"], [3, "data", 4, "ngSwitchCase"], [3, "data", "title", 4, "ngSwitchCase"], [3, "data"], [3, "data", "title"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "ngx-spinner", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "Computing result...");
@@ -9334,12 +9334,12 @@ class ClassificationResultsComponent {
         exportPlugin1.downloadFile('csv', {
             bom: false,
             columnDelimiter: ',',
-            columnHeaders: false,
-            rowHeaders: false,
+            columnHeaders: true,
+            rowHeaders: true,
             exportHiddenColumns: true,
             exportHiddenRows: true,
             fileExtension: 'csv',
-            filename: 'dbScan_output_[YYYY]-[MM]-[DD]',
+            filename: this.title + '_output_[YYYY]-[MM]-[DD]',
             mimeType: 'text/csv',
             rowDelimiter: '\r\n',
         });
@@ -9347,7 +9347,7 @@ class ClassificationResultsComponent {
     ;
 }
 ClassificationResultsComponent.ɵfac = function ClassificationResultsComponent_Factory(t) { return new (t || ClassificationResultsComponent)(); };
-ClassificationResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ClassificationResultsComponent, selectors: [["app-classification-results"]], inputs: { data: "data" }, decls: 13, vars: 4, consts: [[1, "container"], [1, "row"], [1, "col-md-5", 2, "max-height", "700px", "min-height", "300px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [3, "src"]], template: function ClassificationResultsComponent_Template(rf, ctx) { if (rf & 1) {
+ClassificationResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ClassificationResultsComponent, selectors: [["app-classification-results"]], inputs: { data: "data", title: "title" }, decls: 13, vars: 4, consts: [[1, "container"], [1, "row"], [1, "col-md-5", 2, "max-height", "700px", "min-height", "300px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [3, "src"]], template: function ClassificationResultsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -9384,6 +9384,8 @@ ClassificationResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0_
                 styleUrls: ['./classification-results.component.scss']
             }]
     }], function () { return []; }, { data: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], title: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }] }); })();
 

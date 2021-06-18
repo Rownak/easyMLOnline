@@ -11,7 +11,7 @@ import Handsontable from 'handsontable';
 export class ClassificationResultsComponent implements OnInit {
 
   @Input() data;
-
+  @Input() title: string;
   private hotRegisterer = new HotTableRegisterer();
   hotSettings: Handsontable.GridSettings= {
     colHeaders: function(index) {
@@ -48,12 +48,12 @@ export class ClassificationResultsComponent implements OnInit {
      exportPlugin1.downloadFile('csv', {
       bom: false,
       columnDelimiter: ',',
-      columnHeaders: false,
-      rowHeaders: false,
+      columnHeaders: true,
+      rowHeaders: true,
       exportHiddenColumns: true,
       exportHiddenRows: true,
       fileExtension: 'csv',
-      filename: 'dbScan_output_[YYYY]-[MM]-[DD]',
+      filename: this.title+'_output_[YYYY]-[MM]-[DD]',
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });

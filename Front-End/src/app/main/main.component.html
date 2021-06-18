@@ -183,9 +183,9 @@
                       <app-kmeans-results *ngSwitchCase="'K-Means'" [data]="tabz.contentData" ></app-kmeans-results>
                       <app-dbscan-results *ngSwitchCase="'DBSCAN'"[data]="tabz.contentData"></app-dbscan-results>
                       <app-agglomerative-results *ngSwitchCase="'Agglomerative'" [data]="tabz.contentData" ></app-agglomerative-results>
-                      <app-classification-results *ngSwitchCase="'KNN'" [data]="tabz.contentData" ></app-classification-results>
-                      <app-classification-results *ngSwitchCase="'NaiveBayes'" [data]="tabz.contentData" ></app-classification-results>
-                      <app-classification-results *ngSwitchCase="'SVM'" [data]="tabz.contentData" ></app-classification-results>
+                      <app-classification-results *ngSwitchCase="'KNN'" [data]="tabz.contentData" [title]="'KNN'"></app-classification-results>
+                      <app-classification-results *ngSwitchCase="'NaiveBayes'" [data]="tabz.contentData" [title]="'NaiveBayes'"></app-classification-results>
+                      <app-classification-results *ngSwitchCase="'SVM'" [data]="tabz.contentData" [title]="'SVM'"></app-classification-results>
                     </div>
                     <!-- <div *ngIf="tabz.type=='DBSCAN'">
                       <app-dbscan-results [data]="tabz.contentData"></app-dbscan-results>
