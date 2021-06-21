@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container" style="max-width: 80%;">
   <div class="row">
-      <div class="col-md-5" style="max-height: 700px; min-height: 400px;">
+      <div class="col-md-12" style="max-height: 700px; min-height: 400px; margin-bottom: 60px;">
           <h4>Cluster labels</h4>
           <div class="hot">
             <button id="search_field" type="search" placeholder="Search" (click)="exportCSV($event)">Export file</button>
             <hot-table [settings]="hotSettings" [hotId]='resultID' [data]="tableData">
             </hot-table>
-            
+
         </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-5">
           <h4>Result Metrics</h4>
           <table class="table">
               <tbody>
@@ -24,7 +24,7 @@
               </tbody>
           </table>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-7">
           <h3>Results Graph</h3>
           <img src="{{plotLink}}">
       </div>
