@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
         this.algorithmsService.kmeans(values.clusters,inputData, header)
         .pipe(first())
         .subscribe(
-        data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
+        data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
             console.log(error.error.message);
             this.spinner.hide();
@@ -81,7 +81,7 @@ export class MainComponent implements OnInit {
         this.algorithmsService.dbscan(values.eps,values.samples,inputData,header)
         .pipe(first())
         .subscribe(
-        data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
+        data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
           console.log(error.error.message);
           this.spinner.hide();
@@ -100,7 +100,7 @@ export class MainComponent implements OnInit {
         this.algorithmsService.agglomerative(values.clusters,inputData,header)
         .pipe(first())
         .subscribe(
-        data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
+        data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
           console.log(error.error.message);
           this.spinner.hide();
@@ -119,7 +119,7 @@ export class MainComponent implements OnInit {
         this.algorithmsService.knn(values.labelsCol,5,inputData,values.testData,header)
         .pipe(first())
         .subscribe(
-        data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
+        data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
           console.log(error.error.message);
           this.spinner.hide();
@@ -138,7 +138,7 @@ export class MainComponent implements OnInit {
         this.algorithmsService.naivebayes(values.labelsCol,inputData,values.testData,header)
         .pipe(first())
         .subscribe(
-        data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
+        data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
           console.log(error.error.message);
           this.spinner.hide();
@@ -157,7 +157,7 @@ export class MainComponent implements OnInit {
         this.algorithmsService.svm(values.labelsCol,inputData,values.testData,header)
         .pipe(first())
         .subscribe(
-        data => {this.createTab(values.runName,data,this.selectedAlgorithm);this.spinner.hide();},
+        data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
           console.log(error.error.message);
           this.spinner.hide();
@@ -176,14 +176,17 @@ export class MainComponent implements OnInit {
 
   }
 
-  createTab(id:string,contentData:any,type:string){
+  createTab(id:string,active:boolean,contentData:any,type:string){
     this.tabCounter++;
     if (id){
-      var newTab: Tab = {id,contentData,type};
+      var newTab: Tab = {id,active,contentData,type};
     }else{
       id = type+this.tabCounter;
-      var newTab: Tab = {id,contentData,type};
+      var newTab: Tab = {id,active,contentData,type};
     }
+    this.tabs.forEach(function(value){
+      value.active=false
+    });
     this.tabs.push(newTab);
   }
 

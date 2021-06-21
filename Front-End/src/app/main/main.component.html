@@ -23,7 +23,7 @@
                       </div>
                       <div class="col-auto">
                           <h4 class="font-weight-bold mb-0 text-uppercase">Input Section
-                            <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;" 
+                            <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
                             popover="Upload a file or write data. Data content must be numeric. Headers can be textual."
                             popoverTitle="Provide input"
                             triggers="mouseenter:mouseleave"
@@ -33,7 +33,7 @@
                           </button>
 
                           </h4>
-                          
+
                       </div>
                       <div class="col">
                           <hr class="border-secondary mb-0 mt-0">
@@ -54,7 +54,7 @@
                       </div>
                       <div class="col-auto">
                           <h4 class="font-weight-bold mb-0 text-uppercase">Algorithm Section
-                            <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;" 
+                            <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
                             popover="Choose an algorithm by exploring the drop-down menu."
                             popoverTitle="Select a Machine Learning Algorithm"
                             triggers="mouseenter:mouseleave"
@@ -78,7 +78,7 @@
                           Select Algorithm <span class="caret"></span>
                   </button>
                   <ng-template #popTemplate>
-  
+
                     <h3 class="popover-title popover-header" style="margin: -.5rem -.75rem 0 -.75rem;">Choose an algorithm</h3>
                     Choose a machine learning algorithm from the menu. Please visit the links below to learn more about the algorithms.<br>
                     <li>Clustring
@@ -95,7 +95,7 @@
                       <li><a href="https://iq.opengenus.org/understand-support-vector-machine-in-depth/" target="_blank">Support Vector Machine</a></li>
                       </ul>
                     </li>
-                    
+
                     </ng-template>
                   <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
                   [popover]="popTemplate"
@@ -172,8 +172,9 @@
               <tabset>
                 <tab *ngFor="let tabz of tabs"
                      [heading]="tabz.id"
-                     [active]="true"
+                     [active]="tabz.active"
                      (selectTab)="tabz.active = true"
+                     (deselect)="tabz.active = false"
                      [disabled]="tabz.disabled"
                      [removable]="true"
                      (removed)="removeTabHandler(tabz)"
