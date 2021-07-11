@@ -8377,9 +8377,9 @@ function MainComponent_tab_69_app_classification_results_7_Template(rf, ctx) { i
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", tabz_r38.contentData)("title", "SVM");
 } }
 function MainComponent_tab_69_Template(rf, ctx) { if (rf & 1) {
-    const _r53 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r54 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tab", 55);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("selectTab", function MainComponent_tab_69_Template_tab_selectTab_0_listener() { const tabz_r38 = ctx.$implicit; return tabz_r38.active = true; })("removed", function MainComponent_tab_69_Template_tab_removed_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r53); const tabz_r38 = ctx.$implicit; const ctx_r52 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r52.removeTabHandler(tabz_r38); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("selectTab", function MainComponent_tab_69_Template_tab_selectTab_0_listener() { const tabz_r38 = ctx.$implicit; return tabz_r38.active = true; })("deselect", function MainComponent_tab_69_Template_tab_deselect_0_listener() { const tabz_r38 = ctx.$implicit; return tabz_r38.active = false; })("removed", function MainComponent_tab_69_Template_tab_removed_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r54); const tabz_r38 = ctx.$implicit; const ctx_r53 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r53.removeTabHandler(tabz_r38); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 56);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, MainComponent_tab_69_app_kmeans_results_2_Template, 1, 1, "app-kmeans-results", 57);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](3, MainComponent_tab_69_app_dbscan_results_3_Template, 1, 1, "app-dbscan-results", 57);
@@ -8391,7 +8391,7 @@ function MainComponent_tab_69_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const tabz_r38 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("heading", tabz_r38.id)("active", true)("disabled", tabz_r38.disabled)("removable", true)("customClass", tabz_r38.customClass);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("heading", tabz_r38.id)("active", tabz_r38.active)("disabled", tabz_r38.disabled)("removable", true)("customClass", tabz_r38.customClass);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngSwitch", tabz_r38.type);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
@@ -8440,7 +8440,7 @@ class MainComponent {
             case "K-Means": {
                 this.algorithmsService.kmeans(values.clusters, inputData, header)
                     .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])())
-                    .subscribe(data => { this.createTab(values.runName, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
+                    .subscribe(data => { this.createTab(values.runName, true, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
                     console.log(error.error.message);
                     this.spinner.hide();
                     this.message = '';
@@ -8456,7 +8456,7 @@ class MainComponent {
             case "DBSCAN": {
                 this.algorithmsService.dbscan(values.eps, values.samples, inputData, header)
                     .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])())
-                    .subscribe(data => { this.createTab(values.runName, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
+                    .subscribe(data => { this.createTab(values.runName, true, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
                     console.log(error.error.message);
                     this.spinner.hide();
                     this.message = '';
@@ -8472,7 +8472,7 @@ class MainComponent {
             case "Agglomerative": {
                 this.algorithmsService.agglomerative(values.clusters, inputData, header)
                     .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])())
-                    .subscribe(data => { this.createTab(values.runName, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
+                    .subscribe(data => { this.createTab(values.runName, true, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
                     console.log(error.error.message);
                     this.spinner.hide();
                     this.message = '';
@@ -8488,7 +8488,7 @@ class MainComponent {
             case "KNN": {
                 this.algorithmsService.knn(values.labelsCol, 5, inputData, values.testData, header)
                     .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])())
-                    .subscribe(data => { this.createTab(values.runName, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
+                    .subscribe(data => { this.createTab(values.runName, true, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
                     console.log(error.error.message);
                     this.spinner.hide();
                     this.message = '';
@@ -8504,7 +8504,7 @@ class MainComponent {
             case "NaiveBayes": {
                 this.algorithmsService.naivebayes(values.labelsCol, inputData, values.testData, header)
                     .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])())
-                    .subscribe(data => { this.createTab(values.runName, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
+                    .subscribe(data => { this.createTab(values.runName, true, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
                     console.log(error.error.message);
                     this.spinner.hide();
                     this.message = '';
@@ -8520,7 +8520,7 @@ class MainComponent {
             case "SVM": {
                 this.algorithmsService.svm(values.labelsCol, inputData, values.testData, header)
                     .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])())
-                    .subscribe(data => { this.createTab(values.runName, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
+                    .subscribe(data => { this.createTab(values.runName, true, data, this.selectedAlgorithm); this.spinner.hide(); }, error => {
                     console.log(error.error.message);
                     this.spinner.hide();
                     this.message = '';
@@ -8535,15 +8535,18 @@ class MainComponent {
             }
         }
     }
-    createTab(id, contentData, type) {
+    createTab(id, active, contentData, type) {
         this.tabCounter++;
         if (id) {
-            var newTab = { id, contentData, type };
+            var newTab = { id, active, contentData, type };
         }
         else {
             id = type + this.tabCounter;
-            var newTab = { id, contentData, type };
+            var newTab = { id, active, contentData, type };
         }
+        this.tabs.forEach(function (value) {
+            value.active = false;
+        });
         this.tabs.push(newTab);
     }
     removeTabHandler(tab) {
@@ -8562,7 +8565,7 @@ MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComp
         var _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.modal = _t.first);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.inputComponent = _t.first);
-    } }, decls: 70, vars: 12, consts: [["type", "ball-pulse"], [2, "font-size", "20px", "color", "white"], ["regModal", ""], [1, "container"], ["id", "accordionExample", 1, "accordion"], [1, "card"], ["id", "headingOne", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseOne", "aria-expanded", "true", "aria-controls", "collapseOne", 1, "container", "pb-4", "pt-4"], [1, "align-items-center", "row"], [1, "col"], [1, "border-secondary", "mb-0", "mt-0"], [1, "col-auto"], [1, "font-weight-bold", "mb-0", "text-uppercase"], ["type", "button", "popover", "Upload a file or write data. Data content must be numeric. Headers can be textual.", "popoverTitle", "Provide input", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseOne", "aria-labelledby", "headingOne", 1, "collapse", "show"], ["id", "headingTwo", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseTwo", "aria-expanded", "false", "aria-controls", "collapseTwo", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "Choose an algorithm by exploring the drop-down menu.", "popoverTitle", "Select a Machine Learning Algorithm", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseTwo", "aria-labelledby", "headingTwo", 1, "collapse"], [1, "card-body"], ["dropdown", "", "container", "body", 1, "btn-group", 3, "autoClose", "insideClick"], ["id", "button-nested", "dropdownToggle", "", "type", "button", "aria-controls", "dropdown-nested", 1, "btn", "btn-secondary", "dropdown-toggle"], [1, "caret"], ["popTemplate", ""], ["type", "button", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px", 3, "popover", "outsideClick"], ["id", "dropdown-nested", "class", "dropdown-menu", "role", "menu", "aria-labelledby", "button-nested", 4, "dropdownMenu"], [1, "card", 3, "ngSwitch"], [3, "algorithmEmitter", 4, "ngSwitchCase"], [3, "title", "algorithmEmitter", 4, "ngSwitchCase"], ["id", "headingThree", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree", "aria-expanded", "false", "aria-controls", "collapseThree", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "The results are provided here.", "popoverTitle", "Results Panel", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseThree", "aria-labelledby", "headingThree"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "removed", 4, "ngFor", "ngForOf"], [1, "modal-header"], [1, "modal-title", "pull-left"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body", 2, "white-space", "pre-line"], [1, "popover-title", "popover-header", 2, "margin", "-.5rem -.75rem 0 -.75rem"], ["href", "https://computing4all.com/courses/introductory-data-science/lessons/k-means-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/dbscan-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/hierarchical-clustering/", "target", "_blank"], ["href", "https://iq.opengenus.org/k-nearest-neighbors-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/gaussian-naive-bayes/", "target", "_blank"], ["href", "https://iq.opengenus.org/understand-support-vector-machine-in-depth/", "target", "_blank"], ["id", "dropdown-nested", "role", "menu", "aria-labelledby", "button-nested", 1, "dropdown-menu"], ["role", "menuitem", "dropdown", "", "triggers", "mouseclick", "placement", "right", "container", "body"], ["dropdownToggle", "", 1, "dropdown-item", "dropdown-toggle", 3, "click"], ["class", "dropdown-menu", "role", "menu", 4, "dropdownMenu"], ["role", "menu", 1, "dropdown-menu"], ["role", "menuitem"], [1, "dropdown-item", 3, "click"], [3, "algorithmEmitter"], [3, "title", "algorithmEmitter"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "removed"], [3, "ngSwitch"], [3, "data", 4, "ngSwitchCase"], [3, "data", "title", 4, "ngSwitchCase"], [3, "data"], [3, "data", "title"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 70, vars: 12, consts: [["type", "ball-pulse"], [2, "font-size", "20px", "color", "white"], ["regModal", ""], [1, "container"], ["id", "accordionExample", 1, "accordion"], [1, "card"], ["id", "headingOne", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseOne", "aria-expanded", "true", "aria-controls", "collapseOne", 1, "container", "pb-4", "pt-4"], [1, "align-items-center", "row"], [1, "col"], [1, "border-secondary", "mb-0", "mt-0"], [1, "col-auto"], [1, "font-weight-bold", "mb-0", "text-uppercase"], ["type", "button", "popover", "Upload a file or write data. Data content must be numeric. Headers can be textual.", "popoverTitle", "Provide input", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseOne", "aria-labelledby", "headingOne", 1, "collapse", "show"], ["id", "headingTwo", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseTwo", "aria-expanded", "false", "aria-controls", "collapseTwo", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "Choose an algorithm by exploring the drop-down menu.", "popoverTitle", "Select a Machine Learning Algorithm", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseTwo", "aria-labelledby", "headingTwo", 1, "collapse"], [1, "card-body"], ["dropdown", "", "container", "body", 1, "btn-group", 3, "autoClose", "insideClick"], ["id", "button-nested", "dropdownToggle", "", "type", "button", "aria-controls", "dropdown-nested", 1, "btn", "btn-secondary", "dropdown-toggle"], [1, "caret"], ["popTemplate", ""], ["type", "button", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px", 3, "popover", "outsideClick"], ["id", "dropdown-nested", "class", "dropdown-menu", "role", "menu", "aria-labelledby", "button-nested", 4, "dropdownMenu"], [1, "card", 3, "ngSwitch"], [3, "algorithmEmitter", 4, "ngSwitchCase"], [3, "title", "algorithmEmitter", 4, "ngSwitchCase"], ["id", "headingThree", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree", "aria-expanded", "false", "aria-controls", "collapseThree", 1, "container", "pb-4", "pt-4"], ["type", "button", "popover", "The results are provided here.", "popoverTitle", "Results Panel", "triggers", "mouseenter:mouseleave", "title", "", "placement", "right", 1, "btn", "btn-dark", 2, "border-radius", "50%", "padding", "0px", "width", "25px", "height", "25px"], ["id", "collapseThree", "aria-labelledby", "headingThree"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "deselect", "removed", 4, "ngFor", "ngForOf"], [1, "modal-header"], [1, "modal-title", "pull-left"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body", 2, "white-space", "pre-line"], [1, "popover-title", "popover-header", 2, "margin", "-.5rem -.75rem 0 -.75rem"], ["href", "https://computing4all.com/courses/introductory-data-science/lessons/k-means-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/dbscan-clustering-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/hierarchical-clustering/", "target", "_blank"], ["href", "https://iq.opengenus.org/k-nearest-neighbors-algorithm/", "target", "_blank"], ["href", "https://iq.opengenus.org/gaussian-naive-bayes/", "target", "_blank"], ["href", "https://iq.opengenus.org/understand-support-vector-machine-in-depth/", "target", "_blank"], ["id", "dropdown-nested", "role", "menu", "aria-labelledby", "button-nested", 1, "dropdown-menu"], ["role", "menuitem", "dropdown", "", "triggers", "mouseclick", "placement", "right", "container", "body"], ["dropdownToggle", "", 1, "dropdown-item", "dropdown-toggle", 3, "click"], ["class", "dropdown-menu", "role", "menu", 4, "dropdownMenu"], ["role", "menu", 1, "dropdown-menu"], ["role", "menuitem"], [1, "dropdown-item", 3, "click"], [3, "algorithmEmitter"], [3, "title", "algorithmEmitter"], [3, "heading", "active", "disabled", "removable", "customClass", "selectTab", "deselect", "removed"], [3, "ngSwitch"], [3, "data", 4, "ngSwitchCase"], [3, "data", "title", 4, "ngSwitchCase"], [3, "data"], [3, "data", "title"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "ngx-spinner", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "Computing result...");
@@ -9222,7 +9225,7 @@ class AgglomerativeResultsComponent {
     ;
 }
 AgglomerativeResultsComponent.ɵfac = function AgglomerativeResultsComponent_Factory(t) { return new (t || AgglomerativeResultsComponent)(); };
-AgglomerativeResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AgglomerativeResultsComponent, selectors: [["app-agglomerative-results"]], inputs: { data: "data" }, decls: 23, vars: 5, consts: [[1, "container"], [1, "row"], [1, "col-md-5", 2, "max-height", "700px", "min-height", "300px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [1, "table"], ["scope", "row"], [1, "col-md-12"], [3, "src"]], template: function AgglomerativeResultsComponent_Template(rf, ctx) { if (rf & 1) {
+AgglomerativeResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AgglomerativeResultsComponent, selectors: [["app-agglomerative-results"]], inputs: { data: "data" }, decls: 23, vars: 5, consts: [[1, "container", 2, "max-width", "80%"], [1, "row"], [1, "col-md-12", 2, "max-height", "700px", "min-height", "400px", "margin-bottom", "60px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-5"], [1, "table"], ["scope", "row"], [1, "col-md-7"], [3, "src"]], template: function AgglomerativeResultsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -9347,7 +9350,7 @@ class ClassificationResultsComponent {
     ;
 }
 ClassificationResultsComponent.ɵfac = function ClassificationResultsComponent_Factory(t) { return new (t || ClassificationResultsComponent)(); };
-ClassificationResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ClassificationResultsComponent, selectors: [["app-classification-results"]], inputs: { data: "data", title: "title" }, decls: 13, vars: 4, consts: [[1, "container"], [1, "row"], [1, "col-md-5", 2, "max-height", "700px", "min-height", "300px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [3, "src"]], template: function ClassificationResultsComponent_Template(rf, ctx) { if (rf & 1) {
+ClassificationResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ClassificationResultsComponent, selectors: [["app-classification-results"]], inputs: { data: "data", title: "title" }, decls: 13, vars: 4, consts: [[1, "container", 2, "max-width", "80%"], [1, "row"], [1, "col-md-12", 2, "max-height", "700px", "min-height", "400px", "margin-bottom", "60px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [3, "src"]], template: function ClassificationResultsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -9456,7 +9459,7 @@ class DbscanResultsComponent {
     ;
 }
 DbscanResultsComponent.ɵfac = function DbscanResultsComponent_Factory(t) { return new (t || DbscanResultsComponent)(); };
-DbscanResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DbscanResultsComponent, selectors: [["app-dbscan-results"]], inputs: { data: "data" }, decls: 23, vars: 5, consts: [[1, "container"], [1, "row"], [1, "col-md-5", 2, "max-height", "700px", "min-height", "300px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [1, "table"], ["scope", "row"], [1, "col-md-12"], [3, "src"]], template: function DbscanResultsComponent_Template(rf, ctx) { if (rf & 1) {
+DbscanResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DbscanResultsComponent, selectors: [["app-dbscan-results"]], inputs: { data: "data" }, decls: 23, vars: 5, consts: [[1, "container", 2, "max-width", "80%"], [1, "row"], [1, "col-md-12", 2, "max-height", "700px", "min-height", "400px", "margin-bottom", "60px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-5"], [1, "table"], ["scope", "row"], [1, "col-md-7"], [3, "src"]], template: function DbscanResultsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -9584,7 +9587,7 @@ class KmeansResultsComponent {
     ;
 }
 KmeansResultsComponent.ɵfac = function KmeansResultsComponent_Factory(t) { return new (t || KmeansResultsComponent)(); };
-KmeansResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: KmeansResultsComponent, selectors: [["app-kmeans-results"]], inputs: { data: "data" }, decls: 28, vars: 6, consts: [[1, "container"], [1, "row"], [1, "col-md-5", 2, "max-height", "700px", "min-height", "400px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-7"], [1, "table"], ["scope", "row"], [1, "col-md-12"], [3, "src"]], template: function KmeansResultsComponent_Template(rf, ctx) { if (rf & 1) {
+KmeansResultsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: KmeansResultsComponent, selectors: [["app-kmeans-results"]], inputs: { data: "data" }, decls: 28, vars: 6, consts: [[1, "container", 2, "max-width", "80%"], [1, "row"], [1, "col-md-12", 2, "max-height", "700px", "min-height", "400px", "margin-bottom", "60px"], [1, "hot"], ["id", "search_field", "type", "search", "placeholder", "Search", 3, "click"], [3, "settings", "hotId", "data"], [1, "col-md-5"], [1, "table"], ["scope", "row"], [1, "col-md-7"], [3, "src"]], template: function KmeansResultsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);

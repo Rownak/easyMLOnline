@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AuthService } from '@app/services';
+import { LoggingService } from '@app/services/logging.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthService,
+    private loggingService: LoggingService,
     private modalService: BsModalService) {
       if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   get f() { return this.form.controls; }
-
+  public current_time: Date = new Date();
   onSubmit() {
     this.submitted = true;
 
@@ -69,6 +71,18 @@ export class LoginComponent implements OnInit {
           }
           this.openModal(this.modal);
         });
+      
+    this.loggingService.logging_activity(this.f.email.value, "login", new Date(), "user logged in")
+    .pipe(first())
+    .subscribe(
+      data =>{
+        console.log("logging: activity submitted")
+      },
+      error => {
+        console.log("error in logging activity.")
+      }
+    )
+    
   }
 
 

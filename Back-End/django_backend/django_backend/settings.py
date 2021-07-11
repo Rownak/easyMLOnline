@@ -50,12 +50,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'ml_models',
     'users',
-    #'corsheaders'
+    'corsheaders'
 
 ]
 
 MIDDLEWARE = [
-    #'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -114,10 +114,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:4200/"
-# ]
-#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200"
+]
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

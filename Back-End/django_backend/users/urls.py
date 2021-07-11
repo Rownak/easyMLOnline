@@ -7,13 +7,15 @@ from django.urls import path, re_path
 from dj_rest_auth.registration.views import RegisterView, VerifyEmailView, ConfirmEmailView
 from dj_rest_auth.views import LoginView, LogoutView
 from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
-
+from . import logging
 from .views import CustomLoginView, CustomRegisterView
 from rest_framework import routers
+
 router = routers.DefaultRouter()
 router.register('teacher', views.TeacherView)
 urlpatterns = [
     path('users/', views.UserListView.as_view()),
+    path('logging/', logging.logging_activity),
     path('courses/', views.CourseListView.as_view()),
     path('', include(router.urls)),
     #path('account-confirm-email/<str:key>/', ConfirmEmailView.as_view()),
