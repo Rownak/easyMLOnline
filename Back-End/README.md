@@ -1,3 +1,52 @@
+
+------- How to create server on AWS
+1. Start the AWS server
+    a. sign in to AWS server
+    b. EC2
+    c. Launch Instance
+    d. Family: General purpose, Type: t2.micro (free)
+    e. review and launch
+    f. Create new keypair- key pair name: test-keypair-django
+    g. use the "test-keypair-django.pem" file to connect
+    h. chmod 400 test-keypair-django.pem
+
+2. Setting AWS server
+    a. user root53 service to create a domain name
+    b. for now use - Public DNS IPv4
+    c. IPv4 Public IP is the host, you need to copy this to ALLOWED_HOSTS of the project
+    d. right click and click connect
+    f. go the the folder where pem file located and use the command:
+      ssh -i IDRProject.pem ubuntu@ec2-3-16-161-192.us-east-2.compute.amazonaws.com	
+
+3. Inside the server: install nginx and configure
+   a. git clone https://github.com/Sebezayala/IDRProject.git
+   b. pip install gunicorn
+   c. sudo apt-get install -y nginx
+   d. sudo nginx :- start nginx
+   e. Still not working
+   f. Because you need to allow HTTP request in server
+        i. right click on server, ->networking->change security group. select a security group
+        ii. GOto nework and security group->security group
+        iii. select the security group you want to change
+        iv. Inbound->Edit->Add Rule->
+        v. type: http, port range: 80, Source: anywhere
+        vi. type: Custom TCP Port Range: 8000, 
+        vi. Save
+
+3. Connect the server: Gunicorn
+    a. Go inside project->wsgi.py
+    b. gunicorn --bind 0.0.0.0:8000 django_banckend.wsgi:application
+    
+
+
+3. Django Project
+  a. Before deployment steps
+      i. activate:- source deploy_ml/bin/activate
+      i. python manage.py check --deploy :- check the status and follow the recommendations
+      ii. project/settings.py 
+          DEBUG = False 
+          ALLOWED_HOSTS = ['IPv4 Public IP']
+
 django_backend folder contains backend files for this IDR project.
 
 django_backend/ml_models contains machine learning algorithms.
