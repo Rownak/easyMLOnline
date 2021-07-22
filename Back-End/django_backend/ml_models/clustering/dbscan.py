@@ -81,11 +81,17 @@ def get_dbscan(request):
             # print("train",train_data)
             y_db, silhouette_score, plt_url = dbscan_cluster(train_data,eps, min_samples, user_id, features)
             # print("y_db", y_db)
+            input_output = np.concatenate((y_db.reshape(-1, 1), train_data), axis=1)
+            if (features):
+                features.insert(0, " ")
+                features = np.array(features)
+                input_output = np.concatenate((features.reshape(1, -1), input_output), axis=0)
+
             result = {
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_db' : y_db.reshape(-1,1),
-                'input_output': np.concatenate((y_db.reshape(-1, 1), train_data), axis=1),
+                'input_output': input_output,
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }

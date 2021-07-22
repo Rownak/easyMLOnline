@@ -77,11 +77,19 @@ def get_kmeans(request):
             #print(train_data)
             #print("train_data",train_data)
             y_kmeans, ssd_kmeans, silhouette_score, plt_url = kmeans_cluster(train_data, k, user_id, features)
+
+
+            input_output = np.concatenate((y_kmeans.reshape(-1, 1), train_data), axis=1)
+
+            if(features):
+                features.insert(0, " ")
+                features = np.array(features)
+                input_output = np.concatenate((features.reshape(1, -1), input_output), axis=0)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_kmeans' : y_kmeans.reshape(-1,1),
-                'input_output': np.concatenate((y_kmeans.reshape(-1, 1), train_data), axis=1),
+                'input_output': input_output,
                 'ssd' : ssd_kmeans,
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url

@@ -29,12 +29,15 @@
       </div>
   </form>
   <div><label>Test Data</label></div>
+  <div>
+  <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
+  <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+</div>
   <div class="hot">
     <hot-table [settings]="hotSettings" [hotId]='tableID'></hot-table>
   </div>
   <button id="search_field" type="search" placeholder="Search" (click)="exportCSV($event)">Export file</button><br>
-  <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
-          <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+  
   <div class="container" style="display: flex; padding: 20px 60px; justify-content: center; flex-direction: column; max-width: 400px;">
       <button class="btn btn-primary" (click)="runAlgorithm()" type="submit">Run Algorithm</button>
   </div>

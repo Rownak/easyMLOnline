@@ -61,6 +61,16 @@ export class LoginComponent implements OnInit {
     .subscribe(
         data => {
             this.router.navigate([this.returnUrl]);
+            this.loggingService.logging_activity(this.f.email.value, 1, new Date(), "user logged in")
+            .pipe(first())
+            .subscribe(
+              data =>{
+                console.log("logging: activity submitted")
+              },
+              error => {
+                console.log("error in logging activity.")
+              }
+            )
         },
         error => {
           this.message='';
@@ -72,16 +82,7 @@ export class LoginComponent implements OnInit {
           this.openModal(this.modal);
         });
       
-    this.loggingService.logging_activity(this.f.email.value, "login", new Date(), "user logged in")
-    .pipe(first())
-    .subscribe(
-      data =>{
-        console.log("logging: activity submitted")
-      },
-      error => {
-        console.log("error in logging activity.")
-      }
-    )
+
     
   }
 

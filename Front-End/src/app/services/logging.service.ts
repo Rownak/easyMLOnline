@@ -12,8 +12,8 @@ export class LoggingService {
     private http: HttpClient
   ) { }
 
-  logging_activity(email: string, activity:string, time: Date, description:string) {
-    return this.http.post<any>(`${environment.localhostUrl}/user/logging/`, { email, activity, time, description})
+  logging_activity(email: string, activity_id:number, time: Date, description:string) {
+    return this.http.post<any>(`${environment.localhostUrl}/user/logging/`, { email, activity_id, time, description})
         .pipe(map(result => {
             //
             console.log(result);

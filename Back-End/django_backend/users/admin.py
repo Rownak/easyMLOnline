@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser, Course
-
+from django.contrib.sites.models import Site
 class CustomUserAdmin(UserAdmin):
     #username=None
     add_form = CustomUserCreationForm
@@ -28,5 +28,13 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
+admin.site.unregister(Site)
+class SiteAdmin(admin.ModelAdmin):
+    fields = ('id', 'name', 'domain')
+    readonly_fields = ('id',)
+    list_display = ('id', 'name', 'domain')
+    list_display_links = ('name',)
+    search_fields = ('name', 'domain')
+admin.site.register(Site, SiteAdmin)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Course)

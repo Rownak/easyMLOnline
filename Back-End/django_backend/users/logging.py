@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
-
+import os
 from rest_framework import status
 from .models import CustomUser
 import csv
@@ -13,7 +13,7 @@ def logging_activity(request):
         data = json.loads(request.body)
         #print("data", data)
         # data contains two fileds: k: number of cluster, train: matrix(size: m*n)
-        activity = data['activity']
+        activity = data['activity_id']
         time = data['time']
         description = data['description']
         log_entry = []
@@ -28,7 +28,11 @@ def logging_activity(request):
         if (user_id == None):
             user_id = CustomUser.objects.get(email=data['email']).pk
         # print("logging activity user id: ", user_id)
-        log_url = 'media/log_files/{}.csv'.format(user_id)
+        log_dir ='media/log_files/{}/'.format(user_id)
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+        log_url = '{}{}.csv'.format(log_dir,user_id)
+
         # header = ["activity", "time", "description"]
         # if( not os.path.isfile(log_url)):
         #     with open(log_url, 'a') as f:
@@ -42,5 +46,7 @@ def logging_activity(request):
 
     except Exception as e:
         print(e)
-    response = {"logging data saved"}
+        response = {"Error occured."}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+    response = {"logging data saved."}
     return Response(response, status=status.HTTP_200_OK)

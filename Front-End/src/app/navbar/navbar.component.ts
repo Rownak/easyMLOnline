@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.loggingService.logging_activity(this.currentUser.email, "logout", new Date(), "user logout")
+    this.loggingService.logging_activity(this.currentUser.email, 2, new Date(), "user logout")
     .pipe(first())
     .subscribe(
       data =>{
