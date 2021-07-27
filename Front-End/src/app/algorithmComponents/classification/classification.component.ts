@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LogService } from '@app/services/log.service';
 import { HotTableRegisterer } from '@handsontable/angular';
 import Handsontable from 'handsontable';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
@@ -14,6 +15,7 @@ export class ClassificationComponent implements OnInit {
   @Input() title: string;
 
   hotRegisterer = new HotTableRegisterer();
+  hooks = ['afterBeginEditing','afterChange','afterContextMenuShow','afterContextMenuHide','afterCopy','afterCreateCol','afterCreateRow','afterCut','afterPaste','afterRemoveCol','afterRemoveRow','afterSelection','afterUndo']
   hotSettings: Handsontable.GridSettings= {
     startRows: 50,
     startCols: 50,
@@ -36,13 +38,28 @@ export class ClassificationComponent implements OnInit {
   submitted = false;
   @Output() algorithmEmitter=new EventEmitter();
 
-  constructor(private ngxCsvParser: NgxCsvParser,private formBuilder: FormBuilder,) { }
+  constructor(private ngxCsvParser: NgxCsvParser,private formBuilder: FormBuilder,private logger: LogService,) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       labelsCol: ['', Validators.required],
       runName: ['']
     });
+    this.form.get('labelsCol').valueChanges.subscribe(value=>{this.logEvent('ASC2','Labels Column value changed to '+value);});
+    this.form.get('runName').valueChanges.subscribe(value=>{this.logEvent('ASC3','Run name value changed to '+value);});
+    this.hooks.forEach((hook)=>{
+      this.hotSettings[hook]=(...args)=>{
+        this.logHook(hook,args);
+      }
+    });
+  }
+
+  logHook(event,data){
+    this.logEvent('ASC6','[' + event + ']' + data);
+  }
+
+  logEvent(id,event){
+    this.logger.log(id,event).subscribe();
   }
 
   get f() { return this.form.controls; }
@@ -50,9 +67,9 @@ export class ClassificationComponent implements OnInit {
   handleFileInput(files: FileList){
     this.ngxCsvParser.parse(files[0], { header: false, delimiter: ',' })
       .pipe().subscribe((result: Array<any>) => {
-        console.log('Result', result);
         this.csvRecords = result;
         this.hotRegisterer.getInstance(this.tableID).loadData(this.csvRecords)
+        this.logEvent("ASC4","Classification file loaded");
       }, (error: NgxCSVParserError) => {
         console.log('Error', error);
       });
@@ -70,7 +87,7 @@ export class ClassificationComponent implements OnInit {
   }
   public exportCSV(event: any) { // without type info
     let exportPlugin1 = this.hotRegisterer.getInstance(this.tableID).getPlugin('exportFile');
-    
+
      exportPlugin1.downloadFile('csv', {
       bom: false,
       columnDelimiter: ',',
@@ -83,6 +100,7 @@ export class ClassificationComponent implements OnInit {
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });
+    this.logEvent("ASC5","Classification data downloaded");
   };
 
 }

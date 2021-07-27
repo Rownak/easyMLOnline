@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AuthService } from '@app/services';
-import { LoggingService } from '@app/services/logging.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { LogService } from '@app/services/log.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthService,
-    private loggingService: LoggingService,
+    private logger: LogService,
     private modalService: BsModalService) {
       if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
     .subscribe(
         data => {
             this.router.navigate([this.returnUrl]);
+            this.logger.log("LG1","user logged in").subscribe();
+
         },
         error => {
           this.message='';
@@ -71,18 +73,7 @@ export class LoginComponent implements OnInit {
           }
           this.openModal(this.modal);
         });
-      
-    this.loggingService.logging_activity(this.f.email.value, "login", new Date(), "user logged in")
-    .pipe(first())
-    .subscribe(
-      data =>{
-        console.log("logging: activity submitted")
-      },
-      error => {
-        console.log("error in logging activity.")
-      }
-    )
-    
+
   }
 
 

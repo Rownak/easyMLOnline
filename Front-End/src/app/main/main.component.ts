@@ -1,3 +1,4 @@
+import { LogService } from './../services/log.service';
 import { InputComponent } from './../input/input.component';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Tab } from '@app/models'
@@ -26,34 +27,36 @@ export class MainComponent implements OnInit {
   tabs: Tab[];
   private tabCounter: number;
 
-  constructor(private algorithmsService: AlgorithmsService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
+  constructor(private algorithmsService: AlgorithmsService,
+    private spinner: NgxSpinnerService,
+    private modalService: BsModalService,
+    private logger: LogService) { }
 
   ngOnInit(): void {
     this.selectedAlgorithm="";
     this.tabCounter=0;
     this.tabs=[];
+    this.logEvent('M1',"Main page loaded");
   }
 
   setAlgorithm(value:string){
     this.selectedAlgorithm=value;
+    this.logger.log('AS4',this.selectedAlgorithm+" Algorithm Selected").subscribe();
   }
 
   notNull(value){
     return value!=null;
   }
 
+  logEvent(id,event){
+    this.logger.log(id,event).subscribe();
+  }
+
 
   runAlgorithm(values){
     var inputData=this.inputComponent.hotRegisterer.getInstance(this.inputComponent.inputID).getData();
-    // var temp =[]
-    // for(var arr in inputData){
-    //   inputData[arr]=inputData[arr].filter(this.notNull)
-    //   if (inputData[arr].length!=0){
-    //     temp.push(inputData[arr])
-    //   }
-    // }
-    // console.log(temp)
     var header = this.inputComponent.header.value;
+    this.logger.log('AS5',"Run algorithm clicked with " +this.selectedAlgorithm).subscribe();
     this.spinner.show();
     switch(this.selectedAlgorithm){
       case "K-Means":{
@@ -181,18 +184,19 @@ export class MainComponent implements OnInit {
     if (id){
       var newTab: Tab = {id,active,contentData,type};
     }else{
-      id = type+this.tabCounter;
+      id = type+" "+this.tabCounter;
       var newTab: Tab = {id,active,contentData,type};
     }
     this.tabs.forEach(function(value){
       value.active=false
     });
     this.tabs.push(newTab);
+    this.logger.log('RS1',"New results tab created with name " + id).subscribe();
   }
 
   removeTabHandler(tab: any): void {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
-    console.log('Remove Tab handler');
+    this.logger.log('RS1',"Closed tab with name "+tab.id).subscribe();
   }
 
   openModal(template: TemplateRef<any>) {

@@ -24,6 +24,8 @@
                       <div class="col-auto">
                           <h4 class="font-weight-bold mb-0 text-uppercase">Input Section
                             <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
+                            (onShown)="logEvent('IS2','Input Section help opened')"
+                            (onHidden)="logEvent('IS2','Input Section help closed')"
                             popover="Upload a file or write data. Data content must be numeric. Headers can be textual."
                             popoverTitle="Provide input"
                             triggers="mouseenter:mouseleave"
@@ -55,6 +57,8 @@
                       <div class="col-auto">
                           <h4 class="font-weight-bold mb-0 text-uppercase">Algorithm Section
                             <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
+                            (onShown)="logEvent('AS2','Algorithm Section help opened')"
+                            (onHidden)="logEvent('AS2','Algorithm Section help closed')"
                             popover="Choose an algorithm by exploring the drop-down menu."
                             popoverTitle="Select a Machine Learning Algorithm"
                             triggers="mouseenter:mouseleave"
@@ -72,7 +76,7 @@
           </div>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
               <div class="card-body">
-                <div class="btn-group" dropdown [autoClose]="true" container="body" [insideClick]="true" >
+                <div class="btn-group" dropdown [autoClose]="true" container="body" [insideClick]="true" (onShown)="logEvent('AS4','Select Algorithm menu opened')" (onHidden)="logEvent('AS4','Select Algorithm menu closed')" >
                   <button id="button-nested" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
                           aria-controls="dropdown-nested">
                           Select Algorithm <span class="caret"></span>
@@ -98,6 +102,8 @@
 
                     </ng-template>
                   <button type="button" class="btn btn-dark" style="border-radius: 50%; padding: 0px; width: 25px; height: 25px;"
+                  (onShown)="logEvent('AS3','Select Algorithm menu help open')"
+                  (onHidden)="logEvent('AS3','Select Algorithm menu help closed')"
                   [popover]="popTemplate"
                   title=""
                   placement="right" [outsideClick]="true">
@@ -110,9 +116,9 @@
                   </script>
                   <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-nested">
-                    <li role="menuitem" dropdown triggers="mouseclick" placement="right" container="body">
+                    <li role="menuitem" dropdown triggers="mouseclick" placement="right" container="body" (onShown)="logEvent('AS4','Clustering submenu opened')" (onHidden)="logEvent('AS4','Clustering submenu closed')">
                       <a dropdownToggle class="dropdown-item dropdown-toggle"
-                         (click)="false">Clustering <span class="caret"></span></a>
+                        >Clustering <span class="caret"></span></a>
                       <ul *dropdownMenu class="dropdown-menu" role="menu">
                         <li role="menuitem"><a class="dropdown-item" (click)="setAlgorithm('K-Means')">K-Means</a></li>
                         <li role="menuitem"><a class="dropdown-item" (click)="setAlgorithm('DBSCAN')" >DBScan</a></li>
@@ -120,9 +126,9 @@
                       </ul>
                     </li>
 
-                    <li role="menuitem" dropdown triggers="mouseclick" placement="right" container="body">
+                    <li role="menuitem" dropdown triggers="mouseclick" placement="right" container="body" (onShown)="logEvent('AS4','Classification submenu opened')" (onHidden)="logEvent('AS4','Classification submenu closed')">
                       <a dropdownToggle class="dropdown-item dropdown-toggle"
-                         (click)="false">Classification <span class="caret"></span></a>
+                         >Classification <span class="caret"></span></a>
                       <ul *dropdownMenu class="dropdown-menu" role="menu">
                         <li role="menuitem"><a class="dropdown-item" (click)="setAlgorithm('KNN')">K-Nearest Neighbors</a></li>
                         <li role="menuitem"><a class="dropdown-item" (click)="setAlgorithm('NaiveBayes')">Gaussian Naive Bayes</a></li>
@@ -188,15 +194,6 @@
                       <app-classification-results *ngSwitchCase="'NaiveBayes'" [data]="tabz.contentData" [title]="'NaiveBayes'"></app-classification-results>
                       <app-classification-results *ngSwitchCase="'SVM'" [data]="tabz.contentData" [title]="'SVM'"></app-classification-results>
                     </div>
-                    <!-- <div *ngIf="tabz.type=='DBSCAN'">
-                      <app-dbscan-results [data]="tabz.contentData"></app-dbscan-results>
-                    </div>
-                    <div *ngIf="tabz.type=='Agglomerative'">
-                      <app-agglomerative-results [data]="tabz.contentData" ></app-agglomerative-results>
-                    </div>
-                    <div *ngIf="tabz.type=='Agglomerative'">
-                      <app-classification-results [data]="tabz.contentData" ></app-agglomerative-results>
-                    </div> -->
                 </tab>
               </tabset>
             </div>

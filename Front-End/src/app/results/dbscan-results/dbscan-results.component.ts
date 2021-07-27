@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '@environments/environment';
 import Handsontable from 'handsontable';
 import { HotTableRegisterer } from '@handsontable/angular';
+import { LogService } from '@app/services/log.service';
 @Component({
   selector: 'app-dbscan-results',
   templateUrl: './dbscan-results.component.html',
@@ -11,6 +12,7 @@ export class DbscanResultsComponent implements OnInit {
 
   @Input() data;
   private hotRegisterer = new HotTableRegisterer();
+  hooks = ['afterBeginEditing','afterChange','afterContextMenuShow','afterContextMenuHide','afterCopy','afterCreateCol','afterCreateRow','afterCut','afterPaste','afterRemoveCol','afterRemoveRow','afterSelection','afterUndo']
   hotSettings: Handsontable.GridSettings= {
     colHeaders: function(index) {
       if(index==0){
@@ -33,12 +35,25 @@ export class DbscanResultsComponent implements OnInit {
   plotLink: string ="";
   tableData;
 
-  constructor() { }
+  constructor(private logger: LogService,) { }
 
   ngOnInit(): void {
     this.score=this.data["silhouette_score"];
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
-    this.tableData=this.data["input_output"]
+    this.tableData=this.data["input_output"];
+    this.hooks.forEach((hook)=>{
+      this.hotSettings[hook]=(...args)=>{
+        this.logHook(hook,args);
+      }
+    });
+  }
+
+  logHook(event,data){
+    this.logEvent('RSD1','[' + event + ']' + data);
+  }
+
+  logEvent(id,event){
+    this.logger.log(id,event).subscribe();
   }
 
   public exportCSV(event: any) { // without type info
@@ -57,6 +72,7 @@ export class DbscanResultsComponent implements OnInit {
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });
+    this.logEvent("RSD2","Results Section DBScan output downloaded");
   };
 
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LogService } from '@app/services/log.service';
 
 @Component({
   selector: 'app-db-scan',
@@ -13,7 +14,7 @@ export class DbScanComponent implements OnInit {
 
   @Output() algorithmEmitter=new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor(private formBuilder: FormBuilder,private logger: LogService,) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -21,6 +22,13 @@ export class DbScanComponent implements OnInit {
       eps: ['', Validators.required],
       runName: ['']
     });
+    this.form.get('samples').valueChanges.subscribe(value=>{this.logEvent('ASD2','Samples value changed to '+value);});
+    this.form.get('eps').valueChanges.subscribe(value=>{this.logEvent('ASD3','EPS value changed to '+value);});
+    this.form.get('runName').valueChanges.subscribe(value=>{this.logEvent('ASD4','Run Name value changed to '+value);});
+  }
+
+  logEvent(id,event){
+    this.logger.log(id,event).subscribe();
   }
 
   get f() { return this.form.controls; }

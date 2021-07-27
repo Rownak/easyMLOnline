@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '@environments/environment';
 import Handsontable from 'handsontable';
 import { HotTableRegisterer } from '@handsontable/angular';
+import { LogService } from '@app/services/log.service';
 
 @Component({
   selector: 'app-agglomerative-results',
@@ -13,6 +14,7 @@ export class AgglomerativeResultsComponent implements OnInit{
   @Input() data;
 
   private hotRegisterer = new HotTableRegisterer();
+  hooks = ['afterBeginEditing','afterChange','afterContextMenuShow','afterContextMenuHide','afterCopy','afterCreateCol','afterCreateRow','afterCut','afterPaste','afterRemoveCol','afterRemoveRow','afterSelection','afterUndo']
   hotSettings: Handsontable.GridSettings= {
     colHeaders: function(index) {
       if(index==0){
@@ -24,7 +26,7 @@ export class AgglomerativeResultsComponent implements OnInit{
       return 'Object '+ index;
     },
     contextMenu: true,
-    
+
     rowHeaderWidth: 75,
     width: '100%',
     height: '100%',
@@ -36,22 +38,30 @@ export class AgglomerativeResultsComponent implements OnInit{
   plotLink:string ="";
   tableData;
 
-  constructor() { }
+  constructor(private logger: LogService,) { }
 
   ngOnInit(): void {
     this.score=this.data["silhouette_score"];
     this.plotLink=`${environment.apiUrl}/api/`+this.data["plt_url"];
     this.tableData=this.data["input_output"];
+    this.hooks.forEach((hook)=>{
+      this.hotSettings[hook]=(...args)=>{
+        this.logHook(hook,args);
+      }
+    });
   }
 
-  // refresh(): void{
-  //   const hot = this.hotRegisterer.getInstance(this.resultID);
-  //   hot.refreshDimensions();
-  //   console.log("works?")
-  // }
+  logHook(event,data){
+    this.logEvent('RSA1','[' + event + ']' + data);
+  }
+
+  logEvent(id,event){
+    this.logger.log(id,event).subscribe();
+  }
+
   public exportCSV(event: any) { // without type info
     let exportPlugin1 = this.hotRegisterer.getInstance(this.resultID).getPlugin('exportFile');
-      
+
      exportPlugin1.downloadFile('csv', {
       bom: false,
       columnDelimiter: ',',
@@ -64,7 +74,9 @@ export class AgglomerativeResultsComponent implements OnInit{
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });
+
+    this.logEvent("RSA2","Results Section Agglomerative output downloaded");
   };
-  
+
 
 }

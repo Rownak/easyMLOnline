@@ -1,8 +1,10 @@
+import { LogService } from './../services/log.service';
 import { Component, OnInit, } from '@angular/core';
 import Handsontable from 'handsontable';
 import { HotTableRegisterer } from '@handsontable/angular';
 import { NgxCsvParser,NgxCSVParserError } from 'ngx-csv-parser';
 import { FormControl } from '@angular/forms';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-input',
@@ -11,6 +13,7 @@ import { FormControl } from '@angular/forms';
 })
 export class InputComponent implements OnInit {
   hotRegisterer = new HotTableRegisterer();
+  hooks = ['afterBeginEditing','afterChange','afterContextMenuShow','afterContextMenuHide','afterCopy','afterCreateCol','afterCreateRow','afterCut','afterPaste','afterRemoveCol','afterRemoveRow','afterSelection','afterUndo']
   hotSettings: Handsontable.GridSettings= {
     startRows: 50,
     startCols: 50,
@@ -26,6 +29,7 @@ export class InputComponent implements OnInit {
     height: 650,
     licenseKey: 'non-commercial-and-evaluation'
   };
+
   header= new FormControl(true);
 
   inputID: string = 'input-table';
@@ -34,18 +38,35 @@ export class InputComponent implements OnInit {
 
   error:string;
 
-  constructor(private ngxCsvParser: NgxCsvParser) { }
+
+
+  constructor(private ngxCsvParser: NgxCsvParser,
+    private logger: LogService) { }
+
   ngOnInit(): void {
+    this.header.valueChanges.subscribe(value=>{this.logEvent('IS6','Header checkbox changed to '+value);});
+    this.hooks.forEach((hook)=>{
+      this.hotSettings[hook]=(...args)=>{
+        this.logHook(hook,args);
+      }
+    });
+  }
+
+  logHook(event,data){
+    this.logEvent('IS8','[' + event + ']' + data);
+  }
+
+  logEvent(id,event){
+    this.logger.log(id,event).subscribe();
   }
 
   handleFileInput(files: FileList){
-
     this.ngxCsvParser.parse(files[0], { header: false, delimiter: ',' })
       .pipe().subscribe((result: Array<any>) => {
-        console.log('Result', result);
         this.csvRecords = result;
-        this.hotRegisterer.getInstance(this.inputID).loadData(this.csvRecords)
-        
+        this.hotRegisterer.getInstance(this.inputID).loadData(this.csvRecords);
+        this.logEvent("IS5","Input file loaded");
+
       }, (error: NgxCSVParserError) => {
         console.log('Error', error);
       });
@@ -67,6 +88,8 @@ export class InputComponent implements OnInit {
       mimeType: 'text/csv',
       rowDelimiter: '\r\n',
     });
+
+    this.logEvent("IS7","Input data downloaded");
   };
 
 }
