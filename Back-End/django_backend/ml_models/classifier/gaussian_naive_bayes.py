@@ -83,11 +83,17 @@ def get_gaussian_nb(request):
             X_train = np.delete(train_data, label_col, 1)
             # print("train_data",train_data)
             y_pred, plt_url = gaussian_nb(X_train, y_train,X_test, user_id, features)
+            input_output = np.concatenate((y_pred.reshape(-1, 1), X_test), axis=1)
+            if (features):
+                features.pop()
+                features.insert(0, "Class")
+                features = np.array(features)
+                input_output = np.concatenate((features.reshape(1, -1), input_output), axis=0)
             result = {
                 'error': '0',
                 'message': 'Successfull',
                 'y_pred': y_pred.reshape(-1, 1),
-                'test_output': np.concatenate((y_pred.reshape(-1, 1), X_test), axis=1),
+                'test_output': input_output,
                 'plt_url': plt_url
             }
             user = CustomUser.objects.get(id=user_id)

@@ -67,11 +67,16 @@ def get_agglomerative(request):
             train_data = np.asarray(train_data,dtype=np.float64)
             # print(train_data)
             y_agg, silhouette_score, plt_url = agg_cluster(train_data,n, user_id, features)
+            input_output = np.concatenate((y_agg.reshape(-1, 1), train_data), axis=1)
+            if(features):
+                features.insert(0, " ")
+                features = np.array(features)
+                input_output = np.concatenate((features.reshape(1, -1), input_output), axis=0)
             result = {
                 'error' : '0',
                 'message' : 'Successfull',
                 'y_kmeans' : y_agg.reshape(-1,1),
-                'input_output': np.concatenate((y_agg.reshape(-1, 1), train_data), axis=1),
+                'input_output': input_output,
                 'silhouette_score' : silhouette_score,
                 'plt_url' : plt_url
             }

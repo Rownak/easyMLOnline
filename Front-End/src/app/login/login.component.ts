@@ -73,7 +73,6 @@ export class LoginComponent implements OnInit {
           }
           this.openModal(this.modal);
         });
-
   }
 
 
