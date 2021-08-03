@@ -64,7 +64,7 @@ export class ClassificationComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  handleFileInput(files: FileList){
+  handleFileInput(files: FileList,value:any){
     this.ngxCsvParser.parse(files[0], { header: false, delimiter: ',' })
       .pipe().subscribe((result: Array<any>) => {
         this.csvRecords = result;
@@ -73,6 +73,7 @@ export class ClassificationComponent implements OnInit {
       }, (error: NgxCSVParserError) => {
         console.log('Error', error);
       });
+    value="";
   }
 
   runAlgorithm(){

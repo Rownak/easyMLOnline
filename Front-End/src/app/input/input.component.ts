@@ -60,7 +60,7 @@ export class InputComponent implements OnInit {
     this.logger.log(id,event).subscribe();
   }
 
-  handleFileInput(files: FileList){
+  handleFileInput(files: FileList,value:any){
     this.ngxCsvParser.parse(files[0], { header: false, delimiter: ',' })
       .pipe().subscribe((result: Array<any>) => {
         this.csvRecords = result;
@@ -70,6 +70,7 @@ export class InputComponent implements OnInit {
       }, (error: NgxCSVParserError) => {
         console.log('Error', error);
       });
+    value="";
   }
 
   public exportCSV(event: any) { // without type info

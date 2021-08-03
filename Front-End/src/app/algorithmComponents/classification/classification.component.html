@@ -33,7 +33,9 @@
   <div><label>Test Data</label></div>
   <div>
   <label for="exampleFormControlFile1">Enter data from file (Optional)</label>
-  <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files)" accept=".csv"/>
+  <br>
+  <label style="color: red;" ><b>Test Data should not have a headers row</b></label>
+  <input type="file" class="form-control-file" (change)="handleFileInput($event.target.files,$event.target.value)" accept=".csv"/>
 </div>
   <div class="hot">
     <hot-table [settings]="hotSettings" [hotId]='tableID'></hot-table>

@@ -65,17 +65,7 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-            console.log(error.error.message);
-            this.spinner.hide();
-            this.message='';
-            this.title='Data error';
-            for(let key in error.error){
-              for(let message in error.error[key])
-              this.message+=error.error[key][message]+"\n";
-            }
-            this.openModal(this.modal);
-
-
+          this.displayError(error);
         });
 
         break;
@@ -86,16 +76,7 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-          console.log(error.error.message);
-          this.spinner.hide();
-          this.message='';
-          this.title='Data error';
-          for(let key in error.error){
-            for(let message in error.error[key])
-            this.message+=error.error[key][message]+"\n";
-          }
-          this.openModal(this.modal);
-
+          this.displayError(error);
         });
         break;
       }
@@ -105,16 +86,7 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-          console.log(error.error.message);
-          this.spinner.hide();
-          this.message='';
-          this.title='Data error';
-          for(let key in error.error){
-            for(let message in error.error[key])
-            this.message+=error.error[key][message]+"\n";
-          }
-          this.openModal(this.modal);
-
+          this.displayError(error);
         });
         break;
       }
@@ -124,16 +96,7 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-          console.log(error.error.message);
-          this.spinner.hide();
-          this.message='';
-          this.title='Data error';
-          for(let key in error.error){
-            for(let message in error.error[key])
-            this.message+=error.error[key][message]+"\n";
-          }
-          this.openModal(this.modal);
-
+          this.displayError(error);
         });
         break;
       }
@@ -143,16 +106,7 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-          console.log(error.error.message);
-          this.spinner.hide();
-          this.message='';
-          this.title='Data error';
-          for(let key in error.error){
-            for(let message in error.error[key])
-            this.message+=error.error[key][message]+"\n";
-          }
-          this.openModal(this.modal);
-
+          this.displayError(error);
         });
         break;
       }
@@ -162,21 +116,27 @@ export class MainComponent implements OnInit {
         .subscribe(
         data => {this.createTab(values.runName,true,data,this.selectedAlgorithm);this.spinner.hide();},
         error => {
-          console.log(error.error.message);
-          this.spinner.hide();
-          this.message='';
-          this.title='Data error';
-          for(let key in error.error){
-            for(let message in error.error[key])
-            this.message+=error.error[key][message]+"\n";
-          }
-          this.openModal(this.modal);
-
+          this.displayError(error);
         });
         break;
       }
     }
 
+  }
+
+  displayError(error){
+    this.spinner.hide();
+    this.message='';
+    this.title='Data error';
+    if (error.status==413){
+      this.message="File size bigger than the maximum 2MB limit. Please use a smaller file."
+    }else{
+      for(let key in error.error){
+        for(let message in error.error[key])
+        this.message+=error.error[key][message]+"\n";
+      }
+    }
+    this.openModal(this.modal);
   }
 
   createTab(id:string,active:boolean,contentData:any,type:string){
