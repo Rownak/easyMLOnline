@@ -16,7 +16,7 @@
     c. IPv4 Public IP is the host, you need to copy this to ALLOWED_HOSTS of the project
     d. right click and click connect
     f. go the the folder where pem file located and use the command:
-      ssh -i IDRProject.pem ubuntu@easyonline.com	
+      ssh -i IDRProject.pem ubuntu@easymlonline.com	
 
 3. Inside the server: install nginx and configure
    a. git clone https://github.com/Sebezayala/IDRProject.git
